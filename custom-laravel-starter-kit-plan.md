@@ -147,9 +147,25 @@ if ($installIcons) {
 if ($installCmsFramework) {
     runCommand('composer require artisanpack-ui/cms-framework --no-interaction', 'Installing CMS Framework package...');
 
-    // Update User model and migrations for CMS Framework
-    echo "Updating User model and migrations for CMS Framework..." . PHP_EOL;
-    // This will be handled in a separate step
+    // Remove User model and migrations as CMS Framework provides its own
+    echo "Removing default User model and migrations as CMS Framework provides its own..." . PHP_EOL;
+    if (file_exists(__DIR__ . '/../app/Models/User.php')) {
+        unlink(__DIR__ . '/../app/Models/User.php');
+    }
+    
+    // Find and remove the create_users_table migration
+    $migrations = glob(__DIR__ . '/../database/migrations/*_create_users_table.php');
+    foreach ($migrations as $migration) {
+        unlink($migration);
+    }
+    
+    // Update auth views to work with CMS Framework's User model
+    echo "Updating auth views to work with CMS Framework's User model..." . PHP_EOL;
+    copy(__DIR__ . '/../stubs/cms-compatible/register.blade.php', __DIR__ . '/../resources/views/livewire/auth/register.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/login.blade.php', __DIR__ . '/../resources/views/livewire/auth/login.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/forgot-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/forgot-password.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/reset-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/reset-password.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/profile.blade.php', __DIR__ . '/../resources/views/livewire/settings/profile.blade.php');
 }
 
 // Prompt for UI colors
@@ -210,24 +226,20 @@ Note: All ArtisanPack UI components are called using the format `<x-artisanpack-
 
 #### 4.2 CMS Framework Integration
 
-If the CMS Framework package is installed, modify the following files:
+If the CMS Framework package is installed:
 
-1. **User Model** (`app/Models/User.php`):
-   - Add `username`, `first_name`, and `last_name` fields
-   - Update fillable properties
-   - Add accessor for full name
+1. **Remove User Model** (`app/Models/User.php`):
+   - The CMS Framework package includes its own User model
+   - The default User model should be removed to avoid conflicts
 
-2. **User Migration** (`database/migrations/create_users_table.php`):
-   - Add columns for `username`, `first_name`, and `last_name`
-   - Remove the generic `name` column
+2. **Remove User Migration** (`database/migrations/create_users_table.php`):
+   - The CMS Framework package includes its own migration for the users table
+   - The default migration should be removed to avoid conflicts
 
-3. **Registration View** (`resources/views/livewire/auth/register.blade.php`):
-   - Replace the single name field with separate fields for username, first name, and last name
-   - Update validation rules
-
-4. **Profile Settings View** (`resources/views/livewire/settings/profile.blade.php`):
-   - Replace the single name field with separate fields for username, first name, and last name
-   - Update validation rules and form submission logic
+3. **Keep Auth Views**:
+   - The CMS Framework package does NOT include any views
+   - Keep all auth views from the default Laravel and Livewire Starter Kit
+   - Update the views to work with the CMS Framework's User model
 
 ### 5. Conditional File Structure
 
@@ -237,25 +249,45 @@ Create a mechanism to conditionally modify files based on the packages selected 
 // In scripts/install.php
 
 if ($installCmsFramework) {
-    // Copy CMS-specific versions of files
-    copy(__DIR__ . '/../stubs/cms/User.php', __DIR__ . '/../app/Models/User.php');
-    copy(__DIR__ . '/../stubs/cms/create_users_table.php', __DIR__ . '/../database/migrations/xxxx_xx_xx_000000_create_users_table.php');
-    copy(__DIR__ . '/../stubs/cms/register.blade.php', __DIR__ . '/../resources/views/livewire/auth/register.blade.php');
-    copy(__DIR__ . '/../stubs/cms/profile.blade.php', __DIR__ . '/../resources/views/livewire/settings/profile.blade.php');
+    // Remove default User model and migrations as CMS Framework provides its own
+    if (file_exists(__DIR__ . '/../app/Models/User.php')) {
+        unlink(__DIR__ . '/../app/Models/User.php');
+        echo "Removed default User model as CMS Framework provides its own." . PHP_EOL;
+    }
+    
+    // Find and remove the create_users_table migration
+    $migrations = glob(__DIR__ . '/../database/migrations/*_create_users_table.php');
+    foreach ($migrations as $migration) {
+        unlink($migration);
+        echo "Removed default users table migration as CMS Framework provides its own." . PHP_EOL;
+    }
+    
+    // Update auth views to work with CMS Framework's User model
+    echo "Updating auth views to work with CMS Framework's User model..." . PHP_EOL;
+    copy(__DIR__ . '/../stubs/cms-compatible/register.blade.php', __DIR__ . '/../resources/views/livewire/auth/register.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/login.blade.php', __DIR__ . '/../resources/views/livewire/auth/login.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/forgot-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/forgot-password.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/reset-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/reset-password.blade.php');
+    copy(__DIR__ . '/../stubs/cms-compatible/profile.blade.php', __DIR__ . '/../resources/views/livewire/settings/profile.blade.php');
 } else {
     // Copy standard versions of files
     copy(__DIR__ . '/../stubs/standard/User.php', __DIR__ . '/../app/Models/User.php');
     copy(__DIR__ . '/../stubs/standard/create_users_table.php', __DIR__ . '/../database/migrations/xxxx_xx_xx_000000_create_users_table.php');
     copy(__DIR__ . '/../stubs/standard/register.blade.php', __DIR__ . '/../resources/views/livewire/auth/register.blade.php');
+    copy(__DIR__ . '/../stubs/standard/login.blade.php', __DIR__ . '/../resources/views/livewire/auth/login.blade.php');
+    copy(__DIR__ . '/../stubs/standard/forgot-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/forgot-password.blade.php');
+    copy(__DIR__ . '/../stubs/standard/reset-password.blade.php', __DIR__ . '/../resources/views/livewire/auth/reset-password.blade.php');
     copy(__DIR__ . '/../stubs/standard/profile.blade.php', __DIR__ . '/../resources/views/livewire/settings/profile.blade.php');
 }
 ```
 
 ### 6. Stub Files
 
-Create stub files for both standard and CMS versions of key files:
+Create stub files for both standard and CMS-compatible versions of key files:
 
-#### 6.1 Standard User Model
+#### 6.1 Standard Files
+
+##### 6.1.1 Standard User Model
 
 ```php
 // stubs/standard/User.php
@@ -264,45 +296,69 @@ namespace App\Models;
 // Standard User model with 'name' field
 ```
 
-#### 6.2 CMS User Model
-
-```php
-// stubs/cms/User.php
-namespace App\Models;
-
-// CMS User model with 'username', 'first_name', 'last_name' fields
-```
-
-#### 6.3 Standard Registration View
+##### 6.1.2 Standard Auth Views
 
 ```php
 // stubs/standard/register.blade.php
 // Registration view with single 'name' field
+
+// stubs/standard/login.blade.php
+// Login view with email and password fields
+
+// stubs/standard/forgot-password.blade.php
+// Forgot password view with email field
+
+// stubs/standard/reset-password.blade.php
+// Reset password view with email, password, and password confirmation fields
+
+// stubs/standard/profile.blade.php
+// Profile settings view with single 'name' field
 ```
 
-#### 6.4 CMS Registration View
+#### 6.2 CMS-Compatible Files
+
+##### 6.2.1 CMS-Compatible Auth Views
 
 ```php
-// stubs/cms/register.blade.php
-// Registration view with 'username', 'first_name', 'last_name' fields
+// stubs/cms-compatible/register.blade.php
+// Registration view compatible with CMS Framework's User model (username, first_name, last_name fields)
+
+// stubs/cms-compatible/login.blade.php
+// Login view compatible with CMS Framework's User model (username/email and password fields)
+
+// stubs/cms-compatible/forgot-password.blade.php
+// Forgot password view compatible with CMS Framework's User model
+
+// stubs/cms-compatible/reset-password.blade.php
+// Reset password view compatible with CMS Framework's User model
+
+// stubs/cms-compatible/profile.blade.php
+// Profile settings view compatible with CMS Framework's User model (username, first_name, last_name fields)
 ```
+
+Note: We don't need to create CMS-specific User model and migration stubs as the CMS Framework package provides its own. However, we do need to create CMS-compatible auth view stubs since the CMS Framework package does not include any views.
 
 ### 7. Testing and Validation
 
 1. **Unit Tests**:
-   - Test the User model with both standard and CMS configurations
-   - Test authentication flows
-   - Test profile updates
+   - Test the standard User model
+   - Test authentication flows with standard configuration
+   - Test authentication flows with CMS Framework (using its User model)
+   - Test profile updates with both standard and CMS-compatible views
 
 2. **Integration Tests**:
    - Test the installation script
    - Test the CSS generation
+   - Test the file removal when CMS Framework is installed
    - Test the conditional file structure
+   - Test that auth views are properly updated for CMS Framework compatibility
 
 3. **Manual Testing**:
-   - Test the full installation process
+   - Test the full installation process with and without CMS Framework
    - Verify all UI components render correctly
-   - Test authentication and user management with both configurations
+   - Test authentication and user management with standard configuration
+   - Test authentication and user management with CMS Framework
+   - Verify that auth views work correctly with CMS Framework's User model
 
 ## Implementation Timeline
 
@@ -314,6 +370,11 @@ namespace App\Models;
 
 ## Conclusion
 
-This plan outlines the steps to create a custom Laravel Starter Kit that replaces FluxUI components with ArtisanPack UI components, adds required packages, and provides interactive prompts for optional packages and UI customization. The plan also addresses the special case of the CMS framework package, which requires modifications to the user model and related views.
+This plan outlines the steps to create a custom Laravel Starter Kit that replaces FluxUI components with ArtisanPack UI components, adds required packages, and provides interactive prompts for optional packages and UI customization. The plan also addresses the special case of the CMS Framework package, which includes its own User model and migration files but does not include any views. 
 
-By following this plan, we can create a robust and flexible starter kit that meets the specified requirements while maintaining compatibility with Laravel's core functionality.
+When the CMS Framework package is installed, the plan:
+1. Removes the default User model and migration files to avoid conflicts
+2. Keeps all auth views from the default Laravel and Livewire Starter Kit
+3. Updates these views to be compatible with the CMS Framework's User model
+
+By following this plan, we can create a robust and flexible starter kit that meets the specified requirements while maintaining compatibility with Laravel's core functionality and properly integrating with the CMS Framework package when selected.
