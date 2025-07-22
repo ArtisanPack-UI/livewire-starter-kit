@@ -26,13 +26,20 @@
         <x-app-logo class="px-5 pt-4" />
 
         {{-- MENU --}}
-        <x-artisanpack-menu activate-by-route>
+        <x-artisanpack-menu :title="null" activate-by-route class="flex flex-col flex-1">
 
+            <x-artisanpack-menu-separator />
+
+            <x-artisanpack-menu-item title="Dashboard" icon="o-sparkles" :href="route('dashboard')" />
+            <x-artisanpack-menu-item title="Settings" icon="o-sparkles" :href="route('settings.profile')" />
+
+            <x-artisanpack-menu-separator />
+
+            <div class="mt-auto">
             {{-- User --}}
             @if($user = auth()->user())
-                <x-artisanpack-menu-separator />
 
-                <x-artisanpack-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                <x-artisanpack-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded mt-auto">
                     <x-slot:actions>
                         <x-artisanpack-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
                     </x-slot:actions>
@@ -40,13 +47,8 @@
 
                 <x-artisanpack-menu-separator />
             @endif
+            </div>
 
-            <x-artisanpack-menu-item title="Hello" icon="o-sparkles" link="/" />
-
-            <x-artisanpack-menu-sub title="Settings" icon="o-cog-6-tooth">
-                <x-artisanpack-menu-item title="Wifi" icon="o-wifi" link="####" />
-                <x-artisanpack-menu-item title="Archives" icon="o-archive-box" link="####" />
-            </x-artisanpack-menu-sub>
         </x-artisanpack-menu>
     </x-slot:sidebar>
 
