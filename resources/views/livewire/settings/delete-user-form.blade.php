@@ -6,6 +6,7 @@ use Livewire\Volt\Component;
 
 new class extends Component {
     public string $password = '';
+	public bool $deleteUserModal = false;
 
     /**
      * Delete the currently authenticated user.
@@ -28,13 +29,11 @@ new class extends Component {
         <x-artisanpack-subheading>{{ __('Delete your account and all of its resources') }}</x-artisanpack-subheading>
     </div>
 
-    <x-artisanpack-modal.trigger name="confirm-user-deletion">
-        <x-artisanpack-button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
-            {{ __('Delete account') }}
-        </x-artisanpack-button>
-    </x-artisanpack-modal.trigger>
+    <x-artisanpack-button variant="danger" x-data="" @click="$wire.deleteUserModal = true" class="btn-danger">
+        {{ __('Delete account') }}
+    </x-artisanpack-button>
 
-    <x-artisanpack-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+    <x-artisanpack-modal wire:model="deleteUserModal" :show="$errors->isNotEmpty()" focusable>
         <x-artisanpack-form wire:submit="deleteUser" class="space-y-6">
             <div>
                 <x-artisanpack-heading size="lg">{{ __('Are you sure you want to delete your account?') }}</x-artisanpack-heading>
@@ -47,9 +46,7 @@ new class extends Component {
             <x-artisanpack-input wire:model="password" :label="__('Password')" type="password" />
 
             <div class="flex justify-end space-x-2 rtl:space-x-reverse">
-                <x-artisanpack-modal.close>
-                    <x-artisanpack-button variant="filled">{{ __('Cancel') }}</x-artisanpack-button>
-                </x-artisanpack-modal.close>
+                <x-artisanpack-button variant="filled" @click="$wire.deleteUserModal = false">{{ __('Cancel') }}</x-artisanpack-button>
 
                 <x-artisanpack-button variant="danger" type="submit">{{ __('Delete account') }}</x-artisanpack-button>
             </div>
