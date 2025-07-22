@@ -43,7 +43,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="name"
             :label="__('Name')"
             type="text"
@@ -54,7 +54,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <!-- Email Address -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="email"
             :label="__('Email address')"
             type="email"
@@ -64,7 +64,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <!-- Password -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="password"
             :label="__('Password')"
             type="password"
@@ -75,7 +75,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <!-- Confirm Password -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="password_confirmation"
             :label="__('Confirm password')"
             type="password"
@@ -86,14 +86,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <x-artisanpack-button type="submit" variant="primary" class="w-full">
                 {{ __('Create account') }}
-            </flux:button>
+            </x-artisanpack-button>
         </div>
     </form>
 
     <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
         <span>{{ __('Already have an account?') }}</span>
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+        <x-artisanpack-link :href="route('login')" wire:navigate>{{ __('Log in') }}</x-artisanpack-link>
     </div>
 </div>

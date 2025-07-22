@@ -4,8 +4,357 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61eccc5dc89e08e92f1eea8940ff4dae",
+    "content-hash": "4c0b357c033d3090af31497ef5b5a5cf",
     "packages": [
+        {
+            "name": "artisanpack-ui/accessibility",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-accessibility.git",
+                "reference": "5a3df62cf8d90d98cdda9d8864230cc4e0186366"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Fartisanpack-ui-accessibility/repository/archive.zip?sha=5a3df62cf8d90d98cdda9d8864230cc4e0186366",
+                "reference": "5a3df62cf8d90d98cdda9d8864230cc4e0186366",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.3",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.2",
+                "pestphp/pest": "^3.8",
+                "pestphp/pest-plugin-laravel": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "A11y": "ArtisanPackUI\\Accessibility\\Facades\\A11y"
+                    },
+                    "providers": [
+                        "ArtisanPackUI\\Accessibility\\A11yServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "ArtisanPackUI\\Accessibility\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Martella",
+                    "email": "me@jacobmartella.com"
+                }
+            ],
+            "description": "A package for all accessibility functions for ArtisanPack UI.",
+            "support": {
+                "issues": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-accessibility/-/issues",
+                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-accessibility/-/tree/v1.1.1"
+            },
+            "time": "2025-07-01T16:15:48+00:00"
+        },
+        {
+            "name": "artisanpack-ui/livewire-ui-components",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components.git",
+                "reference": "f965f64452481138ee8cd87565beac028c6f4625"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Flivewire-ui-components/repository/archive.zip?sha=f965f64452481138ee8cd87565beac028c6f4625",
+                "reference": "f965f64452481138ee8cd87565beac028c6f4625",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-heroicons": "^2.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "jfcherng/php-diff": "^6.15",
+                "laravel/prompts": "^0|^1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8|^9|^10",
+                "phpunit/phpunit": "^10|^11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "LivewireUiComponents": "ArtisanPack\\LivewireUiComponents\\Facades\\LivewireUiComponents"
+                    },
+                    "providers": [
+                        "ArtisanPack\\LivewireUiComponents\\LivewireUiComponentsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArtisanPack\\LivewireUiComponents\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Martella",
+                    "email": "me@jacobmartella.com"
+                }
+            ],
+            "description": "A Livewire UI component library for the TALL stack, forked from MaryUI and adapted for the ArtisanPack UI ecosystem.",
+            "keywords": [
+                "DaisyUI",
+                "alpinejs",
+                "blade",
+                "blade ui components",
+                "components",
+                "laravel",
+                "livewire",
+                "livewire 3",
+                "livewire components",
+                "livewire packages",
+                "livewire ui",
+                "livewire ui components",
+                "livewire-components",
+                "livewire-packages",
+                "tailwind",
+                "tallstack",
+                "tallstack components",
+                "tallstack ui",
+                "tallstackui",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components/-/issues",
+                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components/-/tree/v0.3.1"
+            },
+            "time": "2025-07-21T15:52:52+00:00"
+        },
+        {
+            "name": "artisanpack-ui/security",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-security.git",
+                "reference": "55292940cad93a5895486ad12cf58aa2feef8934"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Fartisanpack-ui-security/repository/archive.zip?sha=55292940cad93a5895486ad12cf58aa2feef8934",
+                "reference": "55292940cad93a5895486ad12cf58aa2feef8934",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.3",
+                "laminas/laminas-escaper": "^2.16",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.2",
+                "pestphp/pest": "^3.8",
+                "pestphp/pest-plugin-laravel": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Security": "ArtisanPackUI\\Security\\Facades\\Security"
+                    },
+                    "providers": [
+                        "ArtisanPackUI\\Security\\SecurityServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php",
+                    "src/HTMLawed.php"
+                ],
+                "psr-4": {
+                    "ArtisanPackUI\\Security\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Martella",
+                    "email": "me@jacobmartella.com"
+                }
+            ],
+            "description": "Provides escaping and sanitation functions to provide security for Digital Shopfront CMS.",
+            "support": {
+                "issues": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-security/-/issues",
+                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-security/-/tree/v1.0.3"
+            },
+            "time": "2025-05-14T16:45:20+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-heroicons",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driesvints/blade-heroicons.git",
+                "reference": "4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driesvints/blade-heroicons/zipball/4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19",
+                "reference": "4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.6",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Heroicons\\BladeHeroiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Heroicons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of Heroicons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-heroicons",
+            "keywords": [
+                "Heroicons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/driesvints/blade-heroicons/issues",
+                "source": "https://github.com/driesvints/blade-heroicons/tree/2.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/driesvints",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.paypal.com/paypalme/driesvints",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2025-02-13T20:53:33+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driesvints/blade-icons.git",
+                "reference": "7b743f27476acb2ed04cb518213d78abe096e814"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driesvints/blade-icons/zipball/7b743f27476acb2ed04cb518213d78abe096e814",
+                "reference": "7b743f27476acb2ed04cb518213d78abe096e814",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/view": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.4|^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0",
+                "symfony/finder": "^5.3|^6.0|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5.1",
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "bin": [
+                "bin/blade-icons-generate"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/driesvints",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.paypal.com/paypalme/driesvints",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2025-02-13T20:35:06+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.13.1",
@@ -1053,6 +1402,304 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "jfcherng/php-color-output",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jfcherng/php-color-output.git",
+                "reference": "6c7bf16686cc6a291647fcb87491640a2d5edd20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jfcherng/php-color-output/zipball/6c7bf16686cc6a291647fcb87491640a2d5edd20",
+                "reference": "6c7bf16686cc6a291647fcb87491640a2d5edd20",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.19",
+                "liip/rmt": "^1.6",
+                "phan/phan": "^2 || ^3 || ^4",
+                "phpunit/phpunit": ">=7 <10",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jfcherng\\Utility\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jack Cherng",
+                    "email": "jfcherng@gmail.com"
+                }
+            ],
+            "description": "Make your PHP command-line application colorful.",
+            "keywords": [
+                "ansi-colors",
+                "color",
+                "command-line",
+                "str-color"
+            ],
+            "support": {
+                "issues": "https://github.com/jfcherng/php-color-output/issues",
+                "source": "https://github.com/jfcherng/php-color-output/tree/3.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/jfcherng/5usd",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-05-27T02:45:54+00:00"
+        },
+        {
+            "name": "jfcherng/php-diff",
+            "version": "6.16.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jfcherng/php-diff.git",
+                "reference": "7f46bcfc582e81769237d0b3f6b8a548efe8799d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jfcherng/php-diff/zipball/7f46bcfc582e81769237d0b3f6b8a548efe8799d",
+                "reference": "7f46bcfc582e81769237d0b3f6b8a548efe8799d",
+                "shasum": ""
+            },
+            "require": {
+                "jfcherng/php-color-output": "^3",
+                "jfcherng/php-mb-string": "^1.4.6 || ^2",
+                "jfcherng/php-sequence-matcher": "^3.2.10 || ^4",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.51",
+                "liip/rmt": "^1.6",
+                "phan/phan": "^5",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jfcherng\\Diff\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jack Cherng",
+                    "email": "jfcherng@gmail.com"
+                },
+                {
+                    "name": "Chris Boulton",
+                    "email": "chris.boulton@interspire.com"
+                }
+            ],
+            "description": "A comprehensive library for generating differences between two strings in multiple formats (unified, side by side HTML etc).",
+            "keywords": [
+                "diff",
+                "udiff",
+                "unidiff",
+                "unified diff"
+            ],
+            "support": {
+                "issues": "https://github.com/jfcherng/php-diff/issues",
+                "source": "https://github.com/jfcherng/php-diff/tree/6.16.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/jfcherng/5usd",
+                    "type": "custom"
+                }
+            ],
+            "time": "2024-03-10T17:40:29+00:00"
+        },
+        {
+            "name": "jfcherng/php-mb-string",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jfcherng/php-mb-string.git",
+                "reference": "8407bfefde47849c9e7c9594e6de2ac85a0f845d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jfcherng/php-mb-string/zipball/8407bfefde47849c9e7c9594e6de2ac85a0f845d",
+                "reference": "8407bfefde47849c9e7c9594e6de2ac85a0f845d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3",
+                "phan/phan": "^5",
+                "phpunit/phpunit": "^9 || ^10"
+            },
+            "suggest": {
+                "ext-iconv": "Either \"ext-iconv\" or \"ext-mbstring\" is requried.",
+                "ext-mbstring": "Either \"ext-iconv\" or \"ext-mbstring\" is requried."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jfcherng\\Utility\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jack Cherng",
+                    "email": "jfcherng@gmail.com"
+                }
+            ],
+            "description": "A high performance multibytes sting implementation for frequently reading/writing operations.",
+            "support": {
+                "issues": "https://github.com/jfcherng/php-mb-string/issues",
+                "source": "https://github.com/jfcherng/php-mb-string/tree/2.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/jfcherng/5usd",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-04-17T14:23:16+00:00"
+        },
+        {
+            "name": "jfcherng/php-sequence-matcher",
+            "version": "4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jfcherng/php-sequence-matcher.git",
+                "reference": "d2038ac29627340a7458609072a8ba355e80ec5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jfcherng/php-sequence-matcher/zipball/d2038ac29627340a7458609072a8ba355e80ec5b",
+                "reference": "d2038ac29627340a7458609072a8ba355e80ec5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3",
+                "phan/phan": "^5",
+                "phpunit/phpunit": "^9 || ^10",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jfcherng\\Diff\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jack Cherng",
+                    "email": "jfcherng@gmail.com"
+                },
+                {
+                    "name": "Chris Boulton",
+                    "email": "chris.boulton@interspire.com"
+                }
+            ],
+            "description": "A longest sequence matcher. The logic is primarily based on the Python difflib package.",
+            "support": {
+                "issues": "https://github.com/jfcherng/php-sequence-matcher/issues",
+                "source": "https://github.com/jfcherng/php-sequence-matcher/tree/4.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/jfcherng/5usd",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-05-21T07:57:08+00:00"
+        },
+        {
+            "name": "laminas/laminas-escaper",
+            "version": "2.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-escaper.git",
+                "reference": "df1ef9503299a8e3920079a16263b578eaf7c3ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/df1ef9503299a8e3920079a16263b578eaf7c3ba",
+                "reference": "df1ef9503299a8e3920079a16263b578eaf7c3ba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-mbstring": "*",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
+            },
+            "conflict": {
+                "zendframework/zend-escaper": "*"
+            },
+            "require-dev": {
+                "infection/infection": "^0.29.8",
+                "laminas/laminas-coding-standard": "~3.0.1",
+                "phpunit/phpunit": "^10.5.45",
+                "psalm/plugin-phpunit": "^0.19.2",
+                "vimeo/psalm": "^6.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Escaper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "escaper",
+                "laminas"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-escaper/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-escaper/issues",
+                "rss": "https://github.com/laminas/laminas-escaper/releases.atom",
+                "source": "https://github.com/laminas/laminas-escaper"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2025-05-06T19:29:36+00:00"
         },
         {
             "name": "laravel/framework",

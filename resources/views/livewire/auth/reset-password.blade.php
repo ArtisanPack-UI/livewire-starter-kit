@@ -76,7 +76,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="email"
             :label="__('Email')"
             type="email"
@@ -85,7 +85,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <!-- Password -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="password"
             :label="__('Password')"
             type="password"
@@ -96,7 +96,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <!-- Confirm Password -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="password_confirmation"
             :label="__('Confirm password')"
             type="password"
@@ -107,9 +107,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <x-artisanpack-button type="submit" variant="primary" class="w-full">
                 {{ __('Reset password') }}
-            </flux:button>
+            </x-artisanpack-button>
         </div>
     </form>
 </div>

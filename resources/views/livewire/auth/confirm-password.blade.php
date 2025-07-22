@@ -43,7 +43,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form wire:submit="confirmPassword" class="flex flex-col gap-6">
         <!-- Password -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="password"
             :label="__('Password')"
             type="password"
@@ -53,6 +53,6 @@ new #[Layout('components.layouts.auth')] class extends Component {
             viewable
         />
 
-        <flux:button variant="primary" type="submit" class="w-full">{{ __('Confirm') }}</flux:button>
+        <x-artisanpack-button variant="primary" type="submit" class="w-full">{{ __('Confirm') }}</x-artisanpack-button>
     </form>
 </div>

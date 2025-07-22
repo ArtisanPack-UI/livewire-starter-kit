@@ -81,7 +81,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input
+        <x-artisanpack-input
             wire:model="email"
             :label="__('Email address')"
             type="email"
@@ -93,7 +93,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         <!-- Password -->
         <div class="relative">
-            <flux:input
+            <x-artisanpack-input
                 wire:model="password"
                 :label="__('Password')"
                 type="password"
@@ -104,24 +104,24 @@ new #[Layout('components.layouts.auth')] class extends Component {
             />
 
             @if (Route::has('password.request'))
-                <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
+                <x-artisanpack-link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
                     {{ __('Forgot your password?') }}
-                </flux:link>
+                </x-artisanpack-link>
             @endif
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <x-artisanpack-checkbox wire:model="remember" :label="__('Remember me')" />
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+            <x-artisanpack-button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</x-artisanpack-button>
         </div>
     </form>
 
     @if (Route::has('register'))
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
             <span>{{ __('Don\'t have an account?') }}</span>
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
+            <x-artisanpack-link :href="route('register')" wire:navigate>{{ __('Sign up') }}</x-artisanpack-link>
         </div>
     @endif
 </div>

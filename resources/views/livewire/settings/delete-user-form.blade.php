@@ -24,35 +24,35 @@ new class extends Component {
 
 <section class="mt-10 space-y-6">
     <div class="relative mb-5">
-        <flux:heading>{{ __('Delete account') }}</flux:heading>
-        <flux:subheading>{{ __('Delete your account and all of its resources') }}</flux:subheading>
+        <x-artisanpack-heading>{{ __('Delete account') }}</x-artisanpack-heading>
+        <x-artisanpack-subheading>{{ __('Delete your account and all of its resources') }}</x-artisanpack-subheading>
     </div>
 
-    <flux:modal.trigger name="confirm-user-deletion">
-        <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+    <x-artisanpack-modal.trigger name="confirm-user-deletion">
+        <x-artisanpack-button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
             {{ __('Delete account') }}
-        </flux:button>
-    </flux:modal.trigger>
+        </x-artisanpack-button>
+    </x-artisanpack-modal.trigger>
 
-    <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+    <x-artisanpack-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
         <form wire:submit="deleteUser" class="space-y-6">
             <div>
-                <flux:heading size="lg">{{ __('Are you sure you want to delete your account?') }}</flux:heading>
+                <x-artisanpack-heading size="lg">{{ __('Are you sure you want to delete your account?') }}</x-artisanpack-heading>
 
-                <flux:subheading>
+                <x-artisanpack-subheading>
                     {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-                </flux:subheading>
+                </x-artisanpack-subheading>
             </div>
 
-            <flux:input wire:model="password" :label="__('Password')" type="password" />
+            <x-artisanpack-input wire:model="password" :label="__('Password')" type="password" />
 
             <div class="flex justify-end space-x-2 rtl:space-x-reverse">
-                <flux:modal.close>
-                    <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
-                </flux:modal.close>
+                <x-artisanpack-modal.close>
+                    <x-artisanpack-button variant="filled">{{ __('Cancel') }}</x-artisanpack-button>
+                </x-artisanpack-modal.close>
 
-                <flux:button variant="danger" type="submit">{{ __('Delete account') }}</flux:button>
+                <x-artisanpack-button variant="danger" type="submit">{{ __('Delete account') }}</x-artisanpack-button>
             </div>
         </form>
-    </flux:modal>
+    </x-artisanpack-modal>
 </section>
