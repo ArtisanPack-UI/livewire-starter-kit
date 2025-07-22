@@ -78,12 +78,12 @@
 
                     <x-artisanpack-menu.separator />
 
-                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    <x-artisanpack-form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <x-artisanpack-menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
                             {{ __('Log Out') }}
                         </x-artisanpack-menu.item>
-                    </form>
+                    </x-artisanpack-form>
                 </x-artisanpack-menu>
             </x-artisanpack-dropdown>
         </x-artisanpack-header>

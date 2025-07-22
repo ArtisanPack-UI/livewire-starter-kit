@@ -41,7 +41,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <form wire:submit="register" class="flex flex-col gap-6">
+    <x-artisanpack-form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
         <x-artisanpack-input
             wire:model="name"
@@ -86,11 +86,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <div class="flex items-center justify-end">
-            <x-artisanpack-button type="submit" variant="primary" class="w-full">
+            <x-artisanpack-button type="submit" variant="primary" class="w-full btn-primary">
                 {{ __('Create account') }}
             </x-artisanpack-button>
         </div>
-    </form>
+    </x-artisanpack-form>
 
     <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
         <span>{{ __('Already have an account?') }}</span>

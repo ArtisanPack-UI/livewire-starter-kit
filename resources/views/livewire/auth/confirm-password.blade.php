@@ -41,7 +41,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <form wire:submit="confirmPassword" class="flex flex-col gap-6">
+    <x-artisanpack-form wire:submit="confirmPassword" class="flex flex-col gap-6">
         <!-- Password -->
         <x-artisanpack-input
             wire:model="password"
@@ -53,6 +53,6 @@ new #[Layout('components.layouts.auth')] class extends Component {
             viewable
         />
 
-        <x-artisanpack-button variant="primary" type="submit" class="w-full">{{ __('Confirm') }}</x-artisanpack-button>
-    </form>
+        <x-artisanpack-button variant="primary" type="submit" class="w-full btn-primary">{{ __('Confirm') }}</x-artisanpack-button>
+    </x-artisanpack-form>
 </div>

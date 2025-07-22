@@ -46,7 +46,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     @endif
 
     <div class="flex flex-col items-center justify-between space-y-3">
-        <x-artisanpack-button wire:click="sendVerification" variant="primary" class="w-full">
+        <x-artisanpack-button wire:click="sendVerification" variant="primary" class="w-full btn-primary">
             {{ __('Resend verification email') }}
         </x-artisanpack-button>
 

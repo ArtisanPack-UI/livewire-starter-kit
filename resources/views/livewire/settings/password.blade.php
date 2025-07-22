@@ -41,7 +41,7 @@ new class extends Component {
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
-        <form wire:submit="updatePassword" class="mt-6 space-y-6">
+        <x-artisanpack-form wire:submit="updatePassword" class="mt-6 space-y-6">
             <x-artisanpack-input
                 wire:model="current_password"
                 :label="__('Current password')"
@@ -73,6 +73,6 @@ new class extends Component {
                     {{ __('Saved.') }}
                 </x-action-message>
             </div>
-        </form>
+        </x-artisanpack-form>
     </x-settings.layout>
 </section>

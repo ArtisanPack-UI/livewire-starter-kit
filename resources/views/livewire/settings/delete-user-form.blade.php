@@ -35,7 +35,7 @@ new class extends Component {
     </x-artisanpack-modal.trigger>
 
     <x-artisanpack-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
-        <form wire:submit="deleteUser" class="space-y-6">
+        <x-artisanpack-form wire:submit="deleteUser" class="space-y-6">
             <div>
                 <x-artisanpack-heading size="lg">{{ __('Are you sure you want to delete your account?') }}</x-artisanpack-heading>
 
@@ -53,6 +53,6 @@ new class extends Component {
 
                 <x-artisanpack-button variant="danger" type="submit">{{ __('Delete account') }}</x-artisanpack-button>
             </div>
-        </form>
+        </x-artisanpack-form>
     </x-artisanpack-modal>
 </section>

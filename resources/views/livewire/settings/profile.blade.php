@@ -73,7 +73,7 @@ new class extends Component {
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
-        <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
+        <x-artisanpack-form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
             <x-artisanpack-input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
 
             <div>
@@ -107,7 +107,7 @@ new class extends Component {
                     {{ __('Saved.') }}
                 </x-action-message>
             </div>
-        </form>
+        </x-artisanpack-form>
 
         <livewire:settings.delete-user-form />
     </x-settings.layout>

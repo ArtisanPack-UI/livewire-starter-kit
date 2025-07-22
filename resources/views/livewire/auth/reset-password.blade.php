@@ -74,7 +74,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <form wire:submit="resetPassword" class="flex flex-col gap-6">
+    <x-artisanpack-form wire:submit="resetPassword" class="flex flex-col gap-6">
         <!-- Email Address -->
         <x-artisanpack-input
             wire:model="email"
@@ -107,9 +107,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         />
 
         <div class="flex items-center justify-end">
-            <x-artisanpack-button type="submit" variant="primary" class="w-full">
+            <x-artisanpack-button type="submit" variant="primary" class="w-full btn-primary">
                 {{ __('Reset password') }}
             </x-artisanpack-button>
         </div>
-    </form>
+    </x-artisanpack-form>
 </div>
