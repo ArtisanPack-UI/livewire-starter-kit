@@ -1,13 +1,13 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "artisanpack-ui/livewire-starter-kit",
     "type": "project",
     "description": "The official Laravel starter kit for Livewire.",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
     "require": {
         "php": "^8.2",
