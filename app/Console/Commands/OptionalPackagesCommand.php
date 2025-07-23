@@ -59,7 +59,7 @@ class OptionalPackagesCommand extends Command
 
 		if (!empty($packages)) {
 			$this->info('Installing selected optional packages...');
-			$command = 'composer require ' . implode(' ', $packages);
+			$command = 'composer require ' . implode(' ', $packages) . ' --with-all-dependencies';
 			shell_exec($command);
 			$this->info('Optional packages installed successfully.');
 		}
