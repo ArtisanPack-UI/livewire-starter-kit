@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "artisanpack-ui/livewire-starter-kit",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "A Laravel and Livewire starter kit for ArtisanPack UI.",
     "keywords": [
         "laravel",
         "framework"
