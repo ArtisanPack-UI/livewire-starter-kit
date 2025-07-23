@@ -12,7 +12,7 @@ class ThemeSetupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:theme-setup';
+    protected $signature = 'artisanpack:theme-setup';
 
     /**
      * The console command description.
