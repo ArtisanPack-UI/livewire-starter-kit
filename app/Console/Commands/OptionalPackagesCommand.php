@@ -51,8 +51,8 @@ class OptionalPackagesCommand extends Command
 			}
 
 			// Copy stubs
-			File::copy(base_path('stubs/cms-framework/register.blade.php'), resource_path('views/livewire/pages/auth/register.blade.php'));
-			File::copy(base_path('stubs/cms-framework/profile.blade.php'), resource_path('views/livewire/pages/profile.blade.php'));
+			File::copy(base_path('stubs/cms-framework/register.blade.php'), resource_path('views/livewire/auth/register.blade.php'));
+			File::copy(base_path('stubs/cms-framework/profile.blade.php'), resource_path('views/livewire/settings/profile.blade.php'));
 
 			$this->info('CMS Framework modifications complete.');
 		}
