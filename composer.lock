@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c0b357c033d3090af31497ef5b5a5cf",
+    "content-hash": "e9cc7155260db58fd50ebdf477523205",
     "packages": [
         {
             "name": "artisanpack-ui/accessibility",
@@ -67,16 +67,16 @@
         },
         {
             "name": "artisanpack-ui/livewire-ui-components",
-            "version": "0.3.1",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components.git",
-                "reference": "f965f64452481138ee8cd87565beac028c6f4625"
+                "reference": "77373278b2670385c4fdfcffcb9339a39b19ca3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Flivewire-ui-components/repository/archive.zip?sha=f965f64452481138ee8cd87565beac028c6f4625",
-                "reference": "f965f64452481138ee8cd87565beac028c6f4625",
+                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Flivewire-ui-components/repository/archive.zip?sha=77373278b2670385c4fdfcffcb9339a39b19ca3f",
+                "reference": "77373278b2670385c4fdfcffcb9339a39b19ca3f",
                 "shasum": ""
             },
             "require": {
@@ -140,9 +140,9 @@
             ],
             "support": {
                 "issues": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components/-/issues",
-                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components/-/tree/v0.3.1"
+                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/livewire-ui-components/-/tree/v0.3.2"
             },
-            "time": "2025-07-21T15:52:52+00:00"
+            "time": "2025-07-22T19:49:00+00:00"
         },
         {
             "name": "artisanpack-ui/security",
