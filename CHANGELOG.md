@@ -1,6 +1,6 @@
 # ArtisanPack UI Livewire Starter Kit
 
-## [0.4.2] - 2025-07-23
+## [0.4.3] - 2025-07-23
 
 - Added in installation scripts for generating the theme colors and installing optional packages.
 
