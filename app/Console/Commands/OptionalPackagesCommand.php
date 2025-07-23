@@ -59,7 +59,13 @@ class OptionalPackagesCommand extends Command
 
 		if (!empty($packages)) {
 			$this->info('Installing selected optional packages...');
-			$command = 'composer require ' . implode(' ', $packages) . ' --with-all-dependencies';
+			$packagesForCommand = $packages;
+			// If cms-framework is being installed, we need to allow pest-plugin-laravel to be updated
+			if (in_array('artisanpack-ui/cms-framework', $packages)) {
+				$packagesForCommand[] = '"pestphp/pest-plugin-laravel:*"';
+			}
+
+			$command = 'composer require ' . implode(' ', $packagesForCommand) . ' --with-all-dependencies';
 			shell_exec($command);
 			$this->info('Optional packages installed successfully.');
 		}
