@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use function Laravel\Prompts\multiselect;
 
 class OptionalPackagesCommand extends Command
 {
@@ -20,24 +21,21 @@ class OptionalPackagesCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Install optional ArtisanPack UI packages';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-		$packages = $this->choice(
-			'Which optional packages would you like to install? (use comma to separate)',
+		$packages = multiselect(
+			'Which optional packages would you like to install?',
 			[
 				'artisanpack-ui/cms-framework',
 				'artisanpack-ui/code-style',
 				'artisanpack-ui/icons',
 				'artisanpack-ui/livewire-drag-and-drop',
-			],
-			null,
-			null,
-			true
+			]
 		);
 
 		if (in_array('artisanpack-ui/cms-framework', $packages)) {
