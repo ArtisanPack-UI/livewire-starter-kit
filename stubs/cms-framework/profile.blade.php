@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use ArtisanPackUI\CMSFramework\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
