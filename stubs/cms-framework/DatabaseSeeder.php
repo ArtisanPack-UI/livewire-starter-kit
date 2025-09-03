@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use ArtisanPackUI\CmsFramework\Models\User;
+use ArtisanPackUI\CMSFramework\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
