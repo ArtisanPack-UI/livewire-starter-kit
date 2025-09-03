@@ -48,9 +48,16 @@ class OptionalPackagesCommand extends Command
 				File::delete($userMigration);
 			}
 
-			// Copy stubs
+			// Copy stubs (existing code - working correctly)
 			File::copy(base_path('stubs/cms-framework/register.blade.php'), resource_path('views/livewire/auth/register.blade.php'));
 			File::copy(base_path('stubs/cms-framework/profile.blade.php'), resource_path('views/livewire/settings/profile.blade.php'));
+			
+			// NEW: Copy additional stub files for complex updates
+			File::copy(base_path('stubs/cms-framework/UserFactory.php'), database_path('factories/UserFactory.php'));
+			File::copy(base_path('stubs/cms-framework/DatabaseSeeder.php'), database_path('seeders/DatabaseSeeder.php'));
+			
+			// NEW: Update remaining file references (config/auth.php and test files)
+			$this->updateUserModelReferences();
 
 			$this->info('CMS Framework modifications complete.');
 		}
@@ -73,5 +80,47 @@ class OptionalPackagesCommand extends Command
 		File::deleteDirectory(base_path('stubs'));
 		$this->info('Installation complete.');
 		return 0;
+    }
+
+    /**
+     * Update remaining file references from App\Models\User to CMS framework User model.
+     */
+    protected function updateUserModelReferences(): void
+    {
+        // Update config/auth.php
+        $authConfigPath = config_path('auth.php');
+        if (File::exists($authConfigPath)) {
+            $authConfig = File::get($authConfigPath);
+            $authConfig = str_replace(
+                'App\Models\User::class',
+                '\ArtisanPackUI\CmsFramework\Models\User::class',
+                $authConfig
+            );
+            File::put($authConfigPath, $authConfig);
+        }
+
+        // Update test files
+        $testFiles = [
+            'tests/Feature/Auth/AuthenticationTest.php',
+            'tests/Feature/Auth/EmailVerificationTest.php',
+            'tests/Feature/Auth/PasswordConfirmationTest.php',
+            'tests/Feature/Auth/PasswordResetTest.php',
+            'tests/Feature/DashboardTest.php',
+            'tests/Feature/Settings/PasswordUpdateTest.php',
+            'tests/Feature/Settings/ProfileUpdateTest.php',
+        ];
+
+        foreach ($testFiles as $testFile) {
+            $fullPath = base_path($testFile);
+            if (File::exists($fullPath)) {
+                $content = File::get($fullPath);
+                $content = str_replace(
+                    'use App\Models\User;',
+                    'use ArtisanPackUI\CmsFramework\Models\User;',
+                    $content
+                );
+                File::put($fullPath, $content);
+            }
+        }
     }
 }
