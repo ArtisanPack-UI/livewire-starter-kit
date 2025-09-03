@@ -93,7 +93,7 @@ class OptionalPackagesCommand extends Command
             $authConfig = File::get($authConfigPath);
             $authConfig = str_replace(
                 'App\Models\User::class',
-                '\ArtisanPackUI\CmsFramework\Models\User::class',
+                '\ArtisanPackUI\CMSFramework\Models\User::class',
                 $authConfig
             );
             File::put($authConfigPath, $authConfig);
@@ -116,7 +116,7 @@ class OptionalPackagesCommand extends Command
                 $content = File::get($fullPath);
                 $content = str_replace(
                     'use App\Models\User;',
-                    'use ArtisanPackUI\CmsFramework\Models\User;',
+                    'use ArtisanPackUI\CMSFramework\Models\User;',
                     $content
                 );
                 File::put($fullPath, $content);

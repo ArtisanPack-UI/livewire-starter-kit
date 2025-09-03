@@ -1,5 +1,10 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [0.4.6] - 2025-09-03
+
+- Fixed typo: Changed "CmsFramework" to "CMSFramework" in stub files and code references
+- Updated UserFactory.php and DatabaseSeeder.php stub files with correct namespace casing
+
 ## [0.4.5] - 2025-09-03
 
 - Implemented comprehensive CMS Framework stub file replacement system (Approach 3)
