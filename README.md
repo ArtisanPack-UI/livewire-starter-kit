@@ -1,4 +1,4 @@
-# ArtisanPack UI Livewire Starter Kit
+# Livewire Starter Kit
 
 A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapidly building modern, responsive web applications.
 
@@ -29,7 +29,7 @@ A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapid
 1. Create a new project using Composer:
 
 ```bash
-composer create-project artisanpack-ui/livewire-starter-kit your-project-name
+git clone https://github.com/your-username/livewire-starter-kit.git your-project-name
 ```
 
 2. Navigate to your project directory:
@@ -72,6 +72,21 @@ composer dev
 
 This will start the Laravel server, queue worker, logs, and Vite development server concurrently.
 
+## Documentation
+
+Comprehensive documentation is available in the `/docs` directory:
+
+- **[Installation](docs/installation)** - Complete installation guide
+- **[Getting Started](docs/getting-started)** - Tutorial and first steps
+- **[Configuration](docs/configuration)** - Environment and application configuration
+- **[Authentication](docs/authentication)** - User authentication system
+- **[Components](docs/components)** - Livewire, Volt, and ArtisanPack UI components
+- **[Testing](docs/testing)** - Testing with Pest PHP
+- **[Deployment](docs/deployment)** - Deploy to various platforms
+- **[Contributing](docs/contributing)** - Contribution guidelines
+- **[Troubleshooting](docs/troubleshooting)** - Common issues and solutions
+- **[FAQ](docs/faq)** - Frequently asked questions
+
 ## Usage
 
 ### Development
@@ -81,6 +96,8 @@ For local development, use the following command:
 ```bash
 composer dev
 ```
+
+This will start the Laravel server, queue worker, logs, and Vite development server concurrently.
 
 ### Building for Production
 
@@ -95,6 +112,8 @@ npm run build
 ```bash
 composer test
 ```
+
+See the [Testing](docs/testing) documentation for comprehensive testing guides.
 
 ## Project Structure
 
