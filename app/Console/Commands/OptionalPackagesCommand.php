@@ -29,11 +29,12 @@ class OptionalPackagesCommand extends Command
     public function handle()
     {
 		$packages = multiselect(
-			'Which optional packages would you like to install?',
+			__('Which optional packages would you like to install?'),
 			[
 				'artisanpack-ui/code-style',
 				'artisanpack-ui/icons',
-				'artisanpack-ui/livewire-drag-and-drop',
+				'artisanpack-ui/hooks',
+				'artisanpack-ui/media-library',
 			]
 		);
 
@@ -46,9 +47,24 @@ class OptionalPackagesCommand extends Command
 			$this->info('Optional packages installed successfully.');
 		}
 
-		// Clean up the stubs directory
-		$this->info('Cleaning up installation files...');
-		File::deleteDirectory(base_path('stubs'));
+		$this->info('Publishing ArtisanPack configuration...');
+		shell_exec('php artisan vendor:publish --tag=artisanpack-config');
+
+		$npmPackages = multiselect(
+			__('Which optional npm packages would you like to install?'),
+			[
+				'@artisanpack-ui/livewire-drag-and-drop'
+			]
+		);
+
+		if (!empty($npmPackages)) {
+			$this->info('Installing selected optional npm packages...');
+			$npmPackagesForCommand = $npmPackages;
+			$command = 'npm install ' . implode(' ', $npmPackagesForCommand);
+			shell_exec($command);
+			$this->info('Optional npm packages installed successfully.');
+		}
+
 		$this->info('Installation complete.');
 		return 0;
     }
