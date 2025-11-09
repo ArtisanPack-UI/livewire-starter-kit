@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4867e8076a7122618eb6653cd0d9964b",
+    "content-hash": "8d4798aa13e4de51d2a19743913be9c6",
     "packages": [
         {
             "name": "artisanpack-ui/accessibility",
@@ -64,6 +64,65 @@
                 "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-accessibility/-/tree/v1.1.1"
             },
             "time": "2025-07-01T16:15:48+00:00"
+        },
+        {
+            "name": "artisanpack-ui/core",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-core.git",
+                "reference": "b84b5772c562ffd9deda2fdb443cceabfe1f0d84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/jacob-martella-web-design%2Fartisanpack-ui%2Fartisanpack-ui-core/repository/archive.zip?sha=b84b5772c562ffd9deda2fdb443cceabfe1f0d84",
+                "reference": "b84b5772c562ffd9deda2fdb443cceabfe1f0d84",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.3",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.2",
+                "pestphp/pest": "^3.8",
+                "pestphp/pest-plugin-laravel": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Core": "ArtisanPackUI\\Core\\Facades\\Core"
+                    },
+                    "providers": [
+                        "ArtisanPackUI\\Core\\CoreServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "ArtisanPackUI\\Core\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Martella",
+                    "email": "me@jacobmartella.com"
+                }
+            ],
+            "description": "Supplies the core functionality for ArtisanPack UI that needs to be shared across all packages.",
+            "support": {
+                "issues": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-core/-/issues",
+                "source": "https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-core/-/tree/v1.0"
+            },
+            "time": "2025-10-02T15:05:04+00:00"
         },
         {
             "name": "artisanpack-ui/livewire-ui-components",
