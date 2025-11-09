@@ -33,7 +33,6 @@ class OptionalPackagesCommand extends Command
 			[
 				'artisanpack-ui/code-style',
 				'artisanpack-ui/icons',
-				'artisanpack-ui/livewire-drag-and-drop',
 				'artisanpack-ui/hooks',
 				'artisanpack-ui/media-library',
 			]
