@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
+
+use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 
 class OptionalPackagesCommand extends Command
@@ -26,46 +28,139 @@ class OptionalPackagesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-		$packages = multiselect(
-			__('Which optional packages would you like to install?'),
-			[
-				'artisanpack-ui/code-style',
-				'artisanpack-ui/icons',
-				'artisanpack-ui/hooks',
-				'artisanpack-ui/media-library',
-			]
-		);
+        $packages = multiselect(
+            __('Which optional packages would you like to install?'),
+            [
+                'artisanpack-ui/code-style',
+                'artisanpack-ui/icons',
+                'artisanpack-ui/hooks',
+                'artisanpack-ui/media-library',
+            ]
+        );
 
-		if (!empty($packages)) {
-			$this->info('Installing selected optional packages...');
-			$packagesForCommand = $packages;
+        if (! empty($packages)) {
+            $this->info('Installing selected optional packages...');
+            $packagesForCommand = $packages;
 
-			$command = 'composer require ' . implode(' ', $packagesForCommand) . ' --with-all-dependencies';
-			shell_exec($command);
-			$this->info('Optional packages installed successfully.');
-		}
+            $command = 'composer require '.implode(' ', $packagesForCommand).' --with-all-dependencies';
+            shell_exec($command);
+            $this->info('Optional packages installed successfully.');
+        }
 
-		$this->info('Publishing ArtisanPack configuration...');
-		shell_exec('php artisan vendor:publish --tag=artisanpack-config');
+        $this->info('Publishing ArtisanPack configuration...');
+        shell_exec('php artisan vendor:publish --tag=artisanpack-config');
 
-		$npmPackages = multiselect(
-			__('Which optional npm packages would you like to install?'),
-			[
-				'@artisanpack-ui/livewire-drag-and-drop'
-			]
-		);
+        $npmPackages = multiselect(
+            __('Which optional npm packages would you like to install?'),
+            [
+                '@artisanpack-ui/livewire-drag-and-drop',
+            ]
+        );
 
-		if (!empty($npmPackages)) {
-			$this->info('Installing selected optional npm packages...');
-			$npmPackagesForCommand = $npmPackages;
-			$command = 'npm install ' . implode(' ', $npmPackagesForCommand);
-			shell_exec($command);
-			$this->info('Optional npm packages installed successfully.');
-		}
+        if (! empty($npmPackages)) {
+            $this->info('Installing selected optional npm packages...');
+            $npmPackagesForCommand = $npmPackages;
+            $command = 'npm install '.implode(' ', $npmPackagesForCommand);
+            shell_exec($command);
+            $this->info('Optional npm packages installed successfully.');
+        }
 
-		$this->info('Installation complete.');
-		return 0;
+        $useModularStructure = confirm(
+            __('Would you like to use a modular Laravel structure?'),
+            default: false
+        );
+
+        if ($useModularStructure) {
+            $this->info('Setting up modular Laravel structure...');
+            $this->setupModularStructure();
+        }
+
+        $this->info('Installation complete.');
+
+        return 0;
+    }
+
+    /**
+     * Set up the modular Laravel structure.
+     */
+    protected function setupModularStructure(): void
+    {
+        // Install Laravel Modules package
+        $this->info('Installing nwidart/laravel-modules package...');
+        shell_exec('composer require nwidart/laravel-modules --with-all-dependencies');
+
+        // Install Laravel Modules Livewire package
+        $this->info('Installing mhmiton/laravel-modules-livewire package...');
+        shell_exec('composer require mhmiton/laravel-modules-livewire --with-all-dependencies');
+
+        // Publish configuration files
+        $this->info('Publishing module configuration files...');
+        shell_exec('php artisan vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"');
+        shell_exec('php artisan vendor:publish --tag=modules-livewire-config');
+
+        // Update composer.json for module autoloading
+        $this->info('Updating composer.json for module autoloading...');
+        $this->updateComposerJson();
+
+        // Create default modules
+        $this->info('Creating default modules (Admin, Auth, Users)...');
+        $this->createDefaultModules();
+
+        // Run composer dump-autoload
+        $this->info('Running composer dump-autoload...');
+        shell_exec('composer dump-autoload');
+
+        $this->info('Modular structure setup complete!');
+    }
+
+    /**
+     * Update composer.json to include module autoloading.
+     */
+    protected function updateComposerJson(): void
+    {
+        $composerJsonPath = base_path('composer.json');
+
+        if (! File::exists($composerJsonPath)) {
+            $this->error('composer.json file not found.');
+
+            return;
+        }
+
+        try {
+            $composerJson = json_decode(File::get($composerJsonPath), true);
+        } catch (FileNotFoundException $e) {
+            $this->error('Failed to read composer.json: '.$e->getMessage());
+
+            return;
+        }
+
+        // Add merge-plugin configuration if it doesn't exist
+        if (! isset($composerJson['extra']['merge-plugin'])) {
+            $composerJson['extra']['merge-plugin'] = [
+                'include' => [
+                    'Modules/*/composer.json',
+                ],
+            ];
+
+            File::put($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
+            $this->info('Updated composer.json with module autoloading configuration.');
+        }
+    }
+
+    /**
+     * Create the default modules (Admin, Auth, Users).
+     */
+    protected function createDefaultModules(): void
+    {
+        $modules = ['Admin', 'Auth', 'Users'];
+
+        foreach ($modules as $module) {
+            $this->info("Creating $module module...");
+            shell_exec("php artisan module:make $module --no-interaction");
+        }
+
+        $this->info('Default modules created successfully.');
     }
 }
