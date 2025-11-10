@@ -58,6 +58,10 @@ Understanding the project structure will help you navigate and extend the applic
 │   ├── Livewire/            # Livewire components
 │   ├── Models/              # Eloquent models
 │   └── Providers/           # Service providers
+├── Modules/                 # (Optional) Modular structure
+│   ├── Admin/              # Admin module
+│   ├── Auth/               # Authentication module
+│   └── Users/              # Users module
 ├── resources/
 │   ├── css/                 # Stylesheets and themes
 │   ├── js/                  # JavaScript files
@@ -293,8 +297,9 @@ Now that you understand the basics, explore these topics:
 1. **[Authentication](authentication)** - Deep dive into the auth system
 2. **[Components](components)** - Learn about Livewire, Volt, and ArtisanPack UI
 3. **[Configuration](configuration)** - Customize your application
-4. **[Testing](testing)** - Write tests for your features
-5. **[Deployment](deployment)** - Deploy your application
+4. **[Modular Structure](modular-structure)** - Learn about organizing code with modules (if enabled)
+5. **[Testing](testing)** - Write tests for your features
+6. **[Deployment](deployment)** - Deploy your application
 
 ## Best Practices
 

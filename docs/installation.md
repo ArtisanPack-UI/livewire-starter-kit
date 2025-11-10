@@ -20,43 +20,52 @@ Before you begin, ensure your development environment meets the following requir
 
 ### 1. Create New Project
 
-Clone the starter kit repository:
+Create a new project using Composer:
+
+```bash
+composer create-project laravel/livewire-starter-kit your-project-name
+```
+
+Or clone the starter kit repository:
 
 ```bash
 git clone https://github.com/your-username/livewire-starter-kit.git your-project-name
-```
-
-### 2. Navigate to Project
-
-```bash
 cd your-project-name
+composer install
 ```
 
-### 3. Install Dependencies
+### 2. Interactive Setup
 
-Install NPM dependencies:
+During the `composer create-project` or `composer install` process, you'll be prompted with several setup options:
 
-```bash
-npm install
-```
+#### Theme Setup
+The theme setup command will automatically configure your color scheme based on your preferences.
+
+#### Optional Packages Selection
+You can select which ArtisanPack UI packages to install:
+- `artisanpack-ui/code-style` - Code formatting and style utilities
+- `artisanpack-ui/icons` - Icon library for UI components
+- `artisanpack-ui/hooks` - Useful hooks for extending functionality
+- `artisanpack-ui/media-library` - Media management components
+
+#### Optional NPM Packages
+You can also select npm packages:
+- `@artisanpack-ui/livewire-drag-and-drop` - Drag and drop functionality for Livewire
+
+#### Modular Laravel Structure
+You'll be asked if you want to use a modular Laravel structure. If you choose yes:
+- `nwidart/laravel-modules` package will be installed
+- `mhmiton/laravel-modules-livewire` package will be installed
+- Default modules (Admin, Auth, Users) will be created
+- Module configuration will be published
+
+### 3. Project Name Configuration
+
+The installer will automatically update your `composer.json` with a package name based on your project directory name (converted to kebab-case).
 
 ### 4. Environment Configuration
 
-Copy the environment file and configure your application:
-
-```bash
-cp .env.example .env
-```
-
-Generate your application key:
-
-```bash
-php artisan key:generate
-```
-
-### 5. Database Setup
-
-Configure your database connection in the `.env` file:
+The `.env` file is automatically created from `.env.example`. Configure your database connection:
 
 ```env
 DB_CONNECTION=mysql
@@ -67,7 +76,9 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Run the database migrations:
+### 5. Database Setup
+
+If not already done during installation, run the database migrations:
 
 ```bash
 php artisan migrate
@@ -121,7 +132,26 @@ tail -f storage/logs/laravel.log
 
 ## Post-Installation Steps
 
-### 1. Configure Mail Settings
+### 1. Re-run Setup Commands (Optional)
+
+If you need to change your initial setup choices, you can run these commands manually:
+
+**Theme Setup:**
+```bash
+php artisan artisanpack:theme-setup
+```
+
+**Optional Packages:**
+```bash
+php artisan artisanpack:optional-packages-command
+```
+
+This allows you to:
+- Install additional ArtisanPack UI packages
+- Add npm packages
+- Enable modular Laravel structure if you didn't initially
+
+### 2. Configure Mail Settings
 
 Update your mail configuration in `.env`:
 

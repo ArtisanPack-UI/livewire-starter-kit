@@ -17,6 +17,8 @@ A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapid
 - **Dark Mode Support**: Built-in light/dark mode with system preference detection
 - **Accessibility**: Integrated with ArtisanPack UI accessibility features
 - **Security**: Built-in security features and best practices
+- **Modular Structure Option**: Optional modular Laravel architecture using nwidart/laravel-modules
+- **Optional Packages**: Choose from additional ArtisanPack UI packages during setup (code-style, icons, hooks, media-library, drag-and-drop)
 
 ## Requirements
 
@@ -29,42 +31,25 @@ A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapid
 1. Create a new project using Composer:
 
 ```bash
+composer create-project laravel/livewire-starter-kit your-project-name
+```
+
+Or clone the repository:
+
+```bash
 git clone https://github.com/your-username/livewire-starter-kit.git your-project-name
-```
-
-2. Navigate to your project directory:
-
-```bash
 cd your-project-name
+composer install
 ```
 
-3. Install NPM dependencies:
+2. During the installation process, you'll be prompted to:
+   - Select optional ArtisanPack UI packages (code-style, icons, hooks, media-library)
+   - Choose optional npm packages (drag-and-drop)
+   - Decide whether to use a modular Laravel structure
 
-```bash
-npm install
-```
+3. Configure your database in the `.env` file (automatically created during installation)
 
-4. Copy the environment file:
-
-```bash
-cp .env.example .env
-```
-
-5. Generate application key:
-
-```bash
-php artisan key:generate
-```
-
-6. Configure your database in the `.env` file.
-
-7. Run migrations:
-
-```bash
-php artisan migrate
-```
-
-8. Start the development server:
+4. Start the development server:
 
 ```bash
 composer dev
@@ -72,20 +57,23 @@ composer dev
 
 This will start the Laravel server, queue worker, logs, and Vite development server concurrently.
 
+For detailed installation instructions, see the [Installation Guide](docs/installation.md).
+
 ## Documentation
 
 Comprehensive documentation is available in the `/docs` directory:
 
-- **[Installation](docs/installation)** - Complete installation guide
-- **[Getting Started](docs/getting-started)** - Tutorial and first steps
-- **[Configuration](docs/configuration)** - Environment and application configuration
-- **[Authentication](docs/authentication)** - User authentication system
-- **[Components](docs/components)** - Livewire, Volt, and ArtisanPack UI components
-- **[Testing](docs/testing)** - Testing with Pest PHP
-- **[Deployment](docs/deployment)** - Deploy to various platforms
-- **[Contributing](docs/contributing)** - Contribution guidelines
-- **[Troubleshooting](docs/troubleshooting)** - Common issues and solutions
-- **[FAQ](docs/faq)** - Frequently asked questions
+- **[Installation](docs/installation.md)** - Complete installation guide
+- **[Getting Started](docs/getting-started.md)** - Tutorial and first steps
+- **[Configuration](docs/configuration.md)** - Environment and application configuration
+- **[Authentication](docs/authentication.md)** - User authentication system
+- **[Components](docs/components.md)** - Livewire, Volt, and ArtisanPack UI components
+- **[Modular Structure](docs/modular-structure.md)** - Optional modular Laravel architecture
+- **[Testing](docs/testing.md)** - Testing with Pest PHP
+- **[Deployment](docs/deployment.md)** - Deploy to various platforms
+- **[Contributing](docs/contributing.md)** - Contribution guidelines
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+- **[FAQ](docs/faq.md)** - Frequently asked questions
 
 ## Usage
 
@@ -124,6 +112,7 @@ The starter kit follows Laravel's standard directory structure with some additio
 - **resources/views/livewire/**: Contains Livewire components
 - **resources/css/**: Contains CSS files including ArtisanPack UI theme
 - **routes/**: Contains route definitions
+- **Modules/**: (Optional) Contains modular application structure if enabled
 
 ## ArtisanPack UI Components
 

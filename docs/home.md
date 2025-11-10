@@ -36,6 +36,7 @@ The Livewire Starter Kit is built with a modern technology stack including:
 ### Core Features
 - **[Authentication](authentication)** - User authentication system and customization
 - **[Components](components)** - Livewire, Volt, and ArtisanPack UI components documentation
+- **[Modular Structure](modular-structure)** - Optional modular Laravel architecture guide
 - **[Testing](testing)** - Testing with Pest PHP and best practices
 
 ### Development & Deployment
