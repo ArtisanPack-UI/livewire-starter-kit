@@ -30,6 +30,8 @@ class OptionalPackagesCommand extends Command
      */
     public function handle(): int
     {
+        $this->updateProjectName();
+
         $packages = multiselect(
             __('Which optional packages would you like to install?'),
             [
@@ -80,6 +82,45 @@ class OptionalPackagesCommand extends Command
         $this->info('Installation complete.');
 
         return 0;
+    }
+
+    /**
+     * Update the project name and description in composer.json.
+     */
+    protected function updateProjectName(): void
+    {
+        $composerJsonPath = base_path('composer.json');
+
+        if (! File::exists($composerJsonPath)) {
+            $this->error('composer.json file not found.');
+
+            return;
+        }
+
+        try {
+            $composerJson = json_decode(File::get($composerJsonPath), true);
+        } catch (FileNotFoundException $e) {
+            $this->error('Failed to read composer.json: '.$e->getMessage());
+
+            return;
+        }
+
+        // Get the project directory name
+        $projectName = basename(base_path());
+
+        // Convert to kebab-case if needed (handle spaces, underscores, etc.)
+        $projectName = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $projectName));
+        $projectName = trim($projectName, '-');
+
+        // Update the name field (format: vendor/project-name)
+        $vendor = 'laravel';
+        $composerJson['name'] = "{$vendor}/{$projectName}";
+
+        // Update the description to be generic
+        $composerJson['description'] = 'A Laravel application.';
+
+        File::put($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
+        $this->info('Updated composer.json with project name and description.');
     }
 
     /**
