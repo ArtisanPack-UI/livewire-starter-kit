@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:laravelmodules.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(vendor/bin/pint:*)",
+      "Bash(php artisan make:test:*)",
+      "Bash(php artisan test:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost",
+    "herd"
+  ]
+}
