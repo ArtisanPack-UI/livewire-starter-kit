@@ -412,33 +412,60 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
 ## Custom Commands Configuration
 
-The starter kit includes custom Artisan commands:
+The starter kit includes custom Artisan commands for setup and configuration:
 
 ### Theme Setup Command
 
-Configure available themes:
+Generate and configure your application's color scheme:
 
-```php
-// In ThemeSetupCommand
-protected array $themes = [
-    'default' => 'Default Theme',
-    'dark' => 'Dark Theme',
-    'minimal' => 'Minimal Theme',
-];
+```bash
+php artisan artisanpack:theme-setup
 ```
+
+This command automatically sets up your ArtisanPack UI theme based on your preferences. The generated theme configuration is stored in `resources/css/artisanpack-ui-theme.css`.
 
 ### Optional Packages Command
 
-Configure optional packages:
+Install and configure optional ArtisanPack UI packages:
 
-```php
-// In OptionalPackagesCommand
-protected array $packages = [
-    'debugbar' => 'Laravel Debugbar',
-    'telescope' => 'Laravel Telescope',
-    'horizon' => 'Laravel Horizon',
-];
+```bash
+php artisan artisanpack:optional-packages-command
 ```
+
+This interactive command allows you to:
+
+#### 1. Select Composer Packages
+Choose from the following ArtisanPack UI packages:
+- `artisanpack-ui/code-style` - Code formatting and style utilities
+- `artisanpack-ui/icons` - Comprehensive icon library
+- `artisanpack-ui/hooks` - Extensibility hooks system
+- `artisanpack-ui/media-library` - Media management components
+
+#### 2. Select NPM Packages
+Choose from optional frontend packages:
+- `@artisanpack-ui/livewire-drag-and-drop` - Drag and drop functionality
+
+#### 3. Enable Modular Structure
+Optionally enable a modular Laravel structure using:
+- `nwidart/laravel-modules` - Module management package
+- `mhmiton/laravel-modules-livewire` - Livewire integration for modules
+
+When enabled, the command will:
+- Install required packages
+- Publish configuration files
+- Create default modules (Admin, Auth, Users)
+- Update `composer.json` for module autoloading
+- Run `composer dump-autoload`
+
+#### 4. Update Project Name
+The command automatically updates your `composer.json` package name based on your project directory name (converted to kebab-case format).
+
+### Re-running Commands
+
+You can re-run these commands at any time to:
+- Add additional packages you didn't initially select
+- Enable modular structure after initial setup
+- Update theme configuration
 
 ## Troubleshooting Configuration
 
@@ -486,5 +513,6 @@ php artisan queue:work --once
 
 - Learn about [Authentication](authentication) configuration
 - Explore [Component](components) customization
+- Understand [Modular Structure](modular-structure) for organizing large applications
 - Review [Deployment](deployment) configuration
 - Check [Testing](testing) configuration

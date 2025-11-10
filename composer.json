@@ -1,17 +1,18 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "artisanpack-ui/livewire-starter-kit",
+    "name": "laravel/livewire-starter-kit",
     "type": "project",
-    "description": "A Laravel and Livewire starter kit for ArtisanPack UI.",
+    "description": "A Laravel application.",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "version": "0.4.6",
+    "version": "1.0.0-beta1",
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "artisanpack-ui/accessibility": "^1.1",
+        "artisanpack-ui/core": "^1.0",
         "artisanpack-ui/livewire-ui-components": "^0.3.2",
         "artisanpack-ui/security": "^1.0",
         "laravel/framework": "^12.0",
@@ -73,6 +74,11 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "merge-plugin": {
+            "include": [
+                "Modules/*/composer.json"
+            ]
         }
     },
     "config": {

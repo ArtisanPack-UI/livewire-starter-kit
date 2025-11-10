@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
+
+use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 
 class OptionalPackagesCommand extends Command
@@ -26,101 +28,180 @@ class OptionalPackagesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-		$packages = multiselect(
-			'Which optional packages would you like to install?',
-			[
-				'artisanpack-ui/cms-framework',
-				'artisanpack-ui/code-style',
-				'artisanpack-ui/icons',
-				'artisanpack-ui/livewire-drag-and-drop',
-			]
-		);
+        $this->updateProjectName();
 
-		if (in_array('artisanpack-ui/cms-framework', $packages)) {
-			$this->info('Installing cms-framework and making necessary modifications...');
+        $packages = multiselect(
+            __('Which optional packages would you like to install?'),
+            [
+                'artisanpack-ui/code-style',
+                'artisanpack-ui/icons',
+                'artisanpack-ui/hooks',
+                'artisanpack-ui/media-library',
+            ]
+        );
 
-			// Remove User model and migration
-			File::delete(app_path('Models/User.php'));
-			$userMigration = collect(glob(database_path('migrations/*_create_users_table.php')))->first();
-			if ($userMigration) {
-				File::delete($userMigration);
-			}
+        if (! empty($packages)) {
+            $this->info('Installing selected optional packages...');
+            $packagesForCommand = $packages;
 
-			// Copy stubs (existing code - working correctly)
-			File::copy(base_path('stubs/cms-framework/register.blade.php'), resource_path('views/livewire/auth/register.blade.php'));
-			File::copy(base_path('stubs/cms-framework/profile.blade.php'), resource_path('views/livewire/settings/profile.blade.php'));
-			
-			// NEW: Copy additional stub files for complex updates
-			File::copy(base_path('stubs/cms-framework/UserFactory.php'), database_path('factories/UserFactory.php'));
-			File::copy(base_path('stubs/cms-framework/DatabaseSeeder.php'), database_path('seeders/DatabaseSeeder.php'));
-			
-			// NEW: Update remaining file references (config/auth.php and test files)
-			$this->updateUserModelReferences();
+            $command = 'composer require '.implode(' ', $packagesForCommand).' --with-all-dependencies';
+            shell_exec($command);
+            $this->info('Optional packages installed successfully.');
+        }
 
-			$this->info('CMS Framework modifications complete.');
-		}
+        $this->info('Publishing ArtisanPack configuration...');
+        shell_exec('php artisan vendor:publish --tag=artisanpack-config');
 
-		if (!empty($packages)) {
-			$this->info('Installing selected optional packages...');
-			$packagesForCommand = $packages;
-			// If cms-framework is being installed, we need to allow pest-plugin-laravel to be updated
-			if (in_array('artisanpack-ui/cms-framework', $packages)) {
-				$packagesForCommand[] = '"pestphp/pest-plugin-laravel:*"';
-			}
+        $npmPackages = multiselect(
+            __('Which optional npm packages would you like to install?'),
+            [
+                '@artisanpack-ui/livewire-drag-and-drop',
+            ]
+        );
 
-			$command = 'composer require ' . implode(' ', $packagesForCommand) . ' --with-all-dependencies';
-			shell_exec($command);
-			$this->info('Optional packages installed successfully.');
-		}
+        if (! empty($npmPackages)) {
+            $this->info('Installing selected optional npm packages...');
+            $npmPackagesForCommand = $npmPackages;
+            $command = 'npm install '.implode(' ', $npmPackagesForCommand);
+            shell_exec($command);
+            $this->info('Optional npm packages installed successfully.');
+        }
 
-		// Clean up the stubs directory
-		$this->info('Cleaning up installation files...');
-		File::deleteDirectory(base_path('stubs'));
-		$this->info('Installation complete.');
-		return 0;
+        $useModularStructure = confirm(
+            __('Would you like to use a modular Laravel structure?'),
+            default: false
+        );
+
+        if ($useModularStructure) {
+            $this->info('Setting up modular Laravel structure...');
+            $this->setupModularStructure();
+        }
+
+        $this->info('Installation complete.');
+
+        return 0;
     }
 
     /**
-     * Update remaining file references from App\Models\User to CMS framework User model.
+     * Update the project name and description in composer.json.
      */
-    protected function updateUserModelReferences(): void
+    protected function updateProjectName(): void
     {
-        // Update config/auth.php
-        $authConfigPath = config_path('auth.php');
-        if (File::exists($authConfigPath)) {
-            $authConfig = File::get($authConfigPath);
-            $authConfig = str_replace(
-                'App\Models\User::class',
-                '\ArtisanPackUI\CMSFramework\Models\User::class',
-                $authConfig
-            );
-            File::put($authConfigPath, $authConfig);
+        $composerJsonPath = base_path('composer.json');
+
+        if (! File::exists($composerJsonPath)) {
+            $this->error('composer.json file not found.');
+
+            return;
         }
 
-        // Update test files
-        $testFiles = [
-            'tests/Feature/Auth/AuthenticationTest.php',
-            'tests/Feature/Auth/EmailVerificationTest.php',
-            'tests/Feature/Auth/PasswordConfirmationTest.php',
-            'tests/Feature/Auth/PasswordResetTest.php',
-            'tests/Feature/DashboardTest.php',
-            'tests/Feature/Settings/PasswordUpdateTest.php',
-            'tests/Feature/Settings/ProfileUpdateTest.php',
-        ];
+        try {
+            $composerJson = json_decode(File::get($composerJsonPath), true);
+        } catch (FileNotFoundException $e) {
+            $this->error('Failed to read composer.json: '.$e->getMessage());
 
-        foreach ($testFiles as $testFile) {
-            $fullPath = base_path($testFile);
-            if (File::exists($fullPath)) {
-                $content = File::get($fullPath);
-                $content = str_replace(
-                    'use App\Models\User;',
-                    'use ArtisanPackUI\CMSFramework\Models\User;',
-                    $content
-                );
-                File::put($fullPath, $content);
-            }
+            return;
         }
+
+        // Get the project directory name
+        $projectName = basename(base_path());
+
+        // Convert to kebab-case if needed (handle spaces, underscores, etc.)
+        $projectName = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $projectName));
+        $projectName = trim($projectName, '-');
+
+        // Update the name field (format: vendor/project-name)
+        $vendor = 'laravel';
+        $composerJson['name'] = "{$vendor}/{$projectName}";
+
+        // Update the description to be generic
+        $composerJson['description'] = 'A Laravel application.';
+
+        File::put($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
+        $this->info('Updated composer.json with project name and description.');
+    }
+
+    /**
+     * Set up the modular Laravel structure.
+     */
+    protected function setupModularStructure(): void
+    {
+        // Install Laravel Modules package
+        $this->info('Installing nwidart/laravel-modules package...');
+        shell_exec('composer require nwidart/laravel-modules --with-all-dependencies');
+
+        // Install Laravel Modules Livewire package
+        $this->info('Installing mhmiton/laravel-modules-livewire package...');
+        shell_exec('composer require mhmiton/laravel-modules-livewire --with-all-dependencies');
+
+        // Publish configuration files
+        $this->info('Publishing module configuration files...');
+        shell_exec('php artisan vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"');
+        shell_exec('php artisan vendor:publish --tag=modules-livewire-config');
+
+        // Update composer.json for module autoloading
+        $this->info('Updating composer.json for module autoloading...');
+        $this->updateComposerJson();
+
+        // Create default modules
+        $this->info('Creating default modules (Admin, Auth, Users)...');
+        $this->createDefaultModules();
+
+        // Run composer dump-autoload
+        $this->info('Running composer dump-autoload...');
+        shell_exec('composer dump-autoload');
+
+        $this->info('Modular structure setup complete!');
+    }
+
+    /**
+     * Update composer.json to include module autoloading.
+     */
+    protected function updateComposerJson(): void
+    {
+        $composerJsonPath = base_path('composer.json');
+
+        if (! File::exists($composerJsonPath)) {
+            $this->error('composer.json file not found.');
+
+            return;
+        }
+
+        try {
+            $composerJson = json_decode(File::get($composerJsonPath), true);
+        } catch (FileNotFoundException $e) {
+            $this->error('Failed to read composer.json: '.$e->getMessage());
+
+            return;
+        }
+
+        // Add merge-plugin configuration if it doesn't exist
+        if (! isset($composerJson['extra']['merge-plugin'])) {
+            $composerJson['extra']['merge-plugin'] = [
+                'include' => [
+                    'Modules/*/composer.json',
+                ],
+            ];
+
+            File::put($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
+            $this->info('Updated composer.json with module autoloading configuration.');
+        }
+    }
+
+    /**
+     * Create the default modules (Admin, Auth, Users).
+     */
+    protected function createDefaultModules(): void
+    {
+        $modules = ['Admin', 'Auth', 'Users'];
+
+        foreach ($modules as $module) {
+            $this->info("Creating $module module...");
+            shell_exec("php artisan module:make $module --no-interaction");
+        }
+
+        $this->info('Default modules created successfully.');
     }
 }
