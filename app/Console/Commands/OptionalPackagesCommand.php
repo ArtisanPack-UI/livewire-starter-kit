@@ -35,7 +35,9 @@ class OptionalPackagesCommand extends Command
         $packages = multiselect(
             __('Which optional packages would you like to install?'),
             [
+                'artisanpack-ui/cms-framework',
                 'artisanpack-ui/code-style',
+                'artisanpack-ui/code-style-pint',
                 'artisanpack-ui/icons',
                 'artisanpack-ui/hooks',
                 'artisanpack-ui/media-library',
@@ -50,9 +52,6 @@ class OptionalPackagesCommand extends Command
             shell_exec($command);
             $this->info('Optional packages installed successfully.');
         }
-
-        $this->info('Publishing ArtisanPack configuration...');
-        shell_exec('php artisan vendor:publish --tag=artisanpack-config');
 
         $npmPackages = multiselect(
             __('Which optional npm packages would you like to install?'),
@@ -78,6 +77,9 @@ class OptionalPackagesCommand extends Command
             $this->info('Setting up modular Laravel structure...');
             $this->setupModularStructure();
         }
+
+        $this->info('Scaffolding ArtisanPack configuration...');
+        $this->call('artisanpack:scaffold-config');
 
         $this->info('Installation complete.');
 

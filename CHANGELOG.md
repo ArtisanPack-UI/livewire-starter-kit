@@ -1,5 +1,15 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [1.0.0] - 2026-01-02
+
+### Changed
+- Removed Flux UI dependency and related components
+- Removed unused sidebar and header layout files
+- Updated OptionalPackagesCommand to run artisanpack:scaffold-config at the end of installation
+
+### Fixed
+- Test failures caused by view compilation of unused layout files
+
 ## [1.0.0-beta1] - 2025-11-09
 
 ### Added
