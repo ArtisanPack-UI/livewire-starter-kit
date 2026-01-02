@@ -53,7 +53,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/uri" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/uri-interfaces" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/livewire/flux" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/livewire/livewire" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/livewire/volt" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
@@ -150,6 +149,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/mcp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/roster" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/artisanpack-ui/core" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/artisanpack-ui/hooks" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/artisanpack-ui/icons" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/owenvoke/blade-fontawesome" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php84" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php85" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
