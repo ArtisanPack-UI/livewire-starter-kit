@@ -19,7 +19,8 @@
       "mcp__laravel-boost__search-docs",
       "WebFetch(domain:packagist.org)",
       "Bash(curl:*)",
-      "Bash(git -C /Users/jacobmartella/Herd/livewire-starter-kit ls-files:*)"
+      "Bash(git -C /Users/jacobmartella/Herd/livewire-starter-kit ls-files:*)",
+      "mcp__herd__find_available_services"
     ]
   },
   "enableAllProjectMcpServers": true,
