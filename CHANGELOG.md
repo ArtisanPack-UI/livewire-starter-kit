@@ -1,5 +1,12 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [1.0.2] - 2026-01-04
+
+### Changed
+- Default database changed from SQLite to MySQL
+- Reordered post-create-project-cmd scripts to run key:generate before optional packages
+- Added second migrate command to run migrations from optional packages
+
 ## [1.0.1] - 2026-01-04
 
 ### Added
