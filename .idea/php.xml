@@ -158,7 +158,6 @@
       <path value="$PROJECT_DIR$/vendor/jfcherng/php-diff" />
       <path value="$PROJECT_DIR$/vendor/jfcherng/php-mb-string" />
       <path value="$PROJECT_DIR$/vendor/jfcherng/php-color-output" />
-      <path value="$PROJECT_DIR$/vendor/artisanpack-ui/livewire-ui-components" />
       <path value="$PROJECT_DIR$/vendor/laravel/roster" />
       <path value="$PROJECT_DIR$/vendor/laravel/mcp" />
       <path value="$PROJECT_DIR$/vendor/laravel/boost" />
@@ -168,6 +167,7 @@
       <path value="$PROJECT_DIR$/vendor/owenvoke/blade-fontawesome" />
       <path value="$PROJECT_DIR$/vendor/artisanpack-ui/icons" />
       <path value="$PROJECT_DIR$/vendor/artisanpack-ui/hooks" />
+      <path value="$PROJECT_DIR$/vendor/artisanpack-ui/livewire-ui-components" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
