@@ -1,5 +1,18 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [1.0.1] - 2026-01-04
+
+### Added
+- Tests for theme setup command (ThemeSetupCommandTest)
+- Tests for installation process verification (InstallationTest)
+
+### Changed
+- Removed composer.lock from version control for fresh dependency resolution on install
+- Removed GitHub Actions workflows (project uses GitLab CI)
+
+### Fixed
+- Installation errors caused by livewire-ui-components package issues (fixed in livewire-ui-components v1.0.1)
+
 ## [1.0.0] - 2026-01-02
 
 ### Changed
