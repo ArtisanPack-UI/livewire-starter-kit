@@ -191,7 +191,7 @@ This is not recommended as it defeats the purpose of using the starter kit.
 4. **Create a migration** for database changes
 5. **Update the registration form view**
 
-See the [Authentication](authentication/registration) guide for detailed steps.
+See the [Authentication](Authentication-Registration) guide for detailed steps.
 
 ### Can I customize email templates?
 
@@ -356,7 +356,7 @@ Common causes:
 3. **Component not properly mounted**
 4. **Cached views** need clearing: `php artisan view:clear`
 
-See the [Troubleshooting](troubleshooting) guide for detailed solutions.
+See the [Troubleshooting](Troubleshooting) guide for detailed solutions.
 
 ### Assets aren't loading in production. Help!
 
@@ -458,7 +458,7 @@ Report bugs by:
 3. **Write tests** for new features
 4. **Submit a pull request** with detailed description
 
-See the [Contributing](contributing) guide for detailed instructions.
+See the [Contributing](Contributing) guide for detailed instructions.
 
 ### Is professional support available?
 
@@ -475,7 +475,7 @@ While no official commercial support is provided, you can:
 
 If your question isn't answered here:
 
-1. **Search the [documentation](installation)** first
+1. **Search the [documentation](Installation)** first
 2. **Check [GitHub Discussions](https://github.com/your-repo/discussions)**
 3. **Browse [existing issues](https://github.com/your-repo/issues)**
 4. **Create a new discussion** or issue if needed

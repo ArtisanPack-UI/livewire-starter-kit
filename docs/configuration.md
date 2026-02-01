@@ -511,8 +511,8 @@ php artisan queue:work --once
 
 ## Next Steps
 
-- Learn about [Authentication](authentication) configuration
-- Explore [Component](components) customization
-- Understand [Modular Structure](modular-structure) for organizing large applications
-- Review [Deployment](deployment) configuration
-- Check [Testing](testing) configuration
+- Learn about [Authentication](Authentication) configuration
+- Explore [Component](Components) customization
+- Understand [Modular Structure](Modular-Structure) for organizing large applications
+- Review [Deployment](Deployment) configuration
+- Check [Testing](Testing) configuration

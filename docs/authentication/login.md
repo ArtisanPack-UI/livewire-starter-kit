@@ -587,7 +587,7 @@ $login = function () {
 
 ## Next Steps
 
-- Learn about [Password Reset](password-reset) functionality
-- Explore [Email Verification](email-verification) system
-- Review [Security](security) best practices
-- Check [User Settings](user-settings) management
+- Learn about [Password Reset](Password-Reset) functionality
+- Explore [Email Verification](Email-Verification) system
+- Review [Security](Security) best practices
+- Check [User Settings](User-Settings) management

@@ -10,10 +10,10 @@ The Livewire Starter Kit includes three main types of components: Livewire compo
 
 ### Component Types
 
-- **[Livewire Components](components/livewire-volt)** - Server-side reactive components
-- **[ArtisanPack UI Components](components/artisanpack-ui)** - Pre-built UI components
-- **[Layout Components](components/layouts)** - Application layout structure
-- **[Custom Components](components/custom-components)** - Application-specific components
+- **[Livewire Components](Components-Livewire-Volt)** - Server-side reactive components
+- **[ArtisanPack UI Components](Components-Artisanpack-Ui)** - Pre-built UI components
+- **[Layout Components](Components-Layouts)** - Application layout structure
+- **[Custom Components](Components-Custom-Components)** - Application-specific components
 
 ### Key Features
 
@@ -432,13 +432,13 @@ test('user can create post', function () {
 
 Explore detailed guides for each component type:
 
-- **[Livewire and Volt](components/livewire-volt)** - Reactive components with server-side logic
-- **[ArtisanPack UI Components](components/artisanpack-ui)** - Pre-built UI components and styling
-- **[Layout Components](components/layouts)** - Application layout structure
-- **[Custom Components](components/custom-components)** - Building custom components
-- **[Form Components](components/forms)** - Form handling and validation
-- **[Data Components](components/data)** - Tables, lists, and data display
-- **[Interactive Components](components/interactive)** - Modals, dropdowns, and interactions
+- **[Livewire and Volt](Components-Livewire-Volt)** - Reactive components with server-side logic
+- **[ArtisanPack UI Components](Components-Artisanpack-Ui)** - Pre-built UI components and styling
+- **[Layout Components](Components-Layouts)** - Application layout structure
+- **[Custom Components](Components-Custom-Components)** - Building custom components
+- **[Form Components](Components-Forms)** - Form handling and validation
+- **[Data Components](Components-Data)** - Tables, lists, and data display
+- **[Interactive Components](Components-Interactive)** - Modals, dropdowns, and interactions
 
 ## Performance Optimization
 
@@ -467,7 +467,7 @@ Provide feedback during operations:
 
 ## Next Steps
 
-- Learn about [Livewire and Volt](components/livewire-volt) in detail
-- Explore [ArtisanPack UI Components](components/artisanpack-ui) documentation
-- Review [Layout Components](components/layouts) structure
-- Check [Testing](testing) component best practices
+- Learn about [Livewire and Volt](Components-Livewire-Volt) in detail
+- Explore [ArtisanPack UI Components](Components-Artisanpack-Ui) documentation
+- Review [Layout Components](Components-Layouts) structure
+- Check [Testing](Testing) component best practices

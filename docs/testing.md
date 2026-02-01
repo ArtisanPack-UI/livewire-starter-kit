@@ -679,7 +679,7 @@ php artisan test --min=80
 
 ## Next Steps
 
-- Explore [Authentication](authentication) testing in detail
-- Learn about [Components](components) testing strategies
-- Review [Deployment](deployment) testing practices
-- Check [Troubleshooting](troubleshooting) for test issues
+- Explore [Authentication](Authentication) testing in detail
+- Learn about [Components](Components) testing strategies
+- Review [Deployment](Deployment) testing practices
+- Check [Troubleshooting](Troubleshooting) for test issues

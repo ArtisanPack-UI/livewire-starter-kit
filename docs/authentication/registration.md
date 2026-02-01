@@ -473,7 +473,7 @@ $register = function () {
 
 ## Next Steps
 
-- Learn about [Login](login) functionality
-- Explore [Email Verification](email-verification) in detail
-- Review [Security](security) best practices
-- Check [User Settings](user-settings) management
+- Learn about [Login](Login) functionality
+- Explore [Email Verification](Email-Verification) in detail
+- Review [Security](Security) best practices
+- Check [User Settings](User-Settings) management

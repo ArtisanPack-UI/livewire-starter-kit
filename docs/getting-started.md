@@ -18,7 +18,7 @@ The starter kit is built with modern technologies:
 
 ## First Steps
 
-After [installation](installation), let's explore what's included and how to start building.
+After [installation](Installation), let's explore what's included and how to start building.
 
 ### Exploring the Dashboard
 
@@ -104,7 +104,7 @@ class Counter extends Component
 
 ### Volt Integration
 
-Volt provides a functional API for Livewire, allowing you to write components more concisely. Learn more in the [Livewire and Volt](components/livewire-volt) documentation.
+Volt provides a functional API for Livewire, allowing you to write components more concisely. Learn more in the [Livewire and Volt](Components-Livewire-Volt) documentation.
 
 ### ArtisanPack UI Components
 
@@ -133,7 +133,7 @@ The authentication system includes:
 - Password reset
 - Profile management
 
-Learn more in the [Authentication](authentication) guide.
+Learn more in the [Authentication](Authentication) guide.
 
 ## Building Your First Feature
 
@@ -294,12 +294,12 @@ Create `resources/views/tasks.blade.php`:
 
 Now that you understand the basics, explore these topics:
 
-1. **[Authentication](authentication)** - Deep dive into the auth system
-2. **[Components](components)** - Learn about Livewire, Volt, and ArtisanPack UI
-3. **[Configuration](configuration)** - Customize your application
-4. **[Modular Structure](modular-structure)** - Learn about organizing code with modules (if enabled)
-5. **[Testing](testing)** - Write tests for your features
-6. **[Deployment](deployment)** - Deploy your application
+1. **[Authentication](Authentication)** - Deep dive into the auth system
+2. **[Components](Components)** - Learn about Livewire, Volt, and ArtisanPack UI
+3. **[Configuration](Configuration)** - Customize your application
+4. **[Modular Structure](Modular-Structure)** - Learn about organizing code with modules (if enabled)
+5. **[Testing](Testing)** - Write tests for your features
+6. **[Deployment](Deployment)** - Deploy your application
 
 ## Best Practices
 
@@ -320,8 +320,8 @@ Now that you understand the basics, explore these topics:
 
 ## Getting Help
 
-- Check the [FAQ](faq) for common questions
-- Review the [troubleshooting guide](troubleshooting)
+- Check the [FAQ](Faq) for common questions
+- Review the [troubleshooting guide](Troubleshooting)
 - Visit the project repository for issues and discussions
 
 Continue exploring the documentation to master all aspects of the starter kit!

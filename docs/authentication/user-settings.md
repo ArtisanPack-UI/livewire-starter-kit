@@ -670,7 +670,7 @@ test('current password must be correct', function () {
 
 ## Next Steps
 
-- Learn about [Security](security) best practices
-- Explore [Password Reset](password-reset) functionality
-- Review [Email Verification](email-verification) system
-- Check [Customization](customization) options
+- Learn about [Security](Security) best practices
+- Explore [Password Reset](Password-Reset) functionality
+- Review [Email Verification](Email-Verification) system
+- Check [Customization](Customization) options

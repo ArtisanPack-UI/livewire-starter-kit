@@ -216,10 +216,10 @@ npm install
 
 If you encounter issues:
 
-1. Check the [troubleshooting guide](troubleshooting)
-2. Review the [frequently asked questions](faq)
+1. Check the [troubleshooting guide](Troubleshooting)
+2. Review the [frequently asked questions](Faq)
 3. Visit the project repository for support
 
 ## Next Steps
 
-Once installation is complete, continue with the [Getting Started](getting-started) guide to learn how to use the starter kit effectively.
+Once installation is complete, continue with the [Getting Started](Getting-Started) guide to learn how to use the starter kit effectively.

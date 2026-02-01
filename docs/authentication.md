@@ -96,13 +96,13 @@ Authentication is handled by Livewire Volt components:
 
 Explore specific authentication topics:
 
-- **[Registration](authentication/registration)** - User registration process and customization
-- **[Login](authentication/login)** - Login functionality and security features  
-- **[Password Reset](authentication/password-reset)** - Password reset flow and email templates
-- **[Email Verification](authentication/email-verification)** - Email verification system
-- **[User Settings](authentication/user-settings)** - Profile management and account settings
-- **[Security](authentication/security)** - Security features and best practices
-- **[Customization](authentication/customization)** - Customizing the authentication system
+- **[Registration](Authentication-Registration)** - User registration process and customization
+- **[Login](Authentication-Login)** - Login functionality and security features  
+- **[Password Reset](Authentication-Password-Reset)** - Password reset flow and email templates
+- **[Email Verification](Authentication-Email-Verification)** - Email verification system
+- **[User Settings](Authentication-User-Settings)** - Profile management and account settings
+- **[Security](Authentication-Security)** - Security features and best practices
+- **[Customization](Authentication-Customization)** - Customizing the authentication system
 
 ## Configuration
 
@@ -296,7 +296,7 @@ test('users can register', function () {
 
 ## Next Steps
 
-- Learn about [User Settings](authentication/user-settings) management
-- Explore [Security](authentication/security) best practices
-- Review [Customization](authentication/customization) options
-- Check [Testing](testing) authentication features
+- Learn about [User Settings](Authentication-User-Settings) management
+- Explore [Security](Authentication-Security) best practices
+- Review [Customization](Authentication-Customization) options
+- Check [Testing](Testing) authentication features

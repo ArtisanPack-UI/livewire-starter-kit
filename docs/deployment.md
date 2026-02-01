@@ -10,11 +10,11 @@ This guide covers deploying the Livewire Starter Kit to various platforms and en
 
 Deployment options include:
 
-- **[Laravel Forge](deployment/forge)** - Managed server deployment
-- **[Laravel Vapor](deployment/vapor)** - Serverless deployment on AWS
-- **[Docker](deployment/docker)** - Containerized deployment
-- **[Traditional Servers](deployment/traditional)** - Manual server setup
-- **[Shared Hosting](deployment/shared-hosting)** - Budget hosting options
+- **[Laravel Forge](Deployment-Forge)** - Managed server deployment
+- **[Laravel Vapor](Deployment-Vapor)** - Serverless deployment on AWS
+- **[Docker](Deployment-Docker)** - Containerized deployment
+- **[Traditional Servers](Deployment-Traditional)** - Manual server setup
+- **[Shared Hosting](Deployment-Shared-Hosting)** - Budget hosting options
 
 ## Pre-Deployment Checklist
 
@@ -707,7 +707,7 @@ sudo chmod -R 775 /var/www/yourapp/storage
 
 ## Next Steps
 
-- Set up [Monitoring](monitoring) for production applications
-- Configure [Backup](backup) strategies
-- Learn about [Performance](performance) optimization
-- Review [Security](security) best practices
+- Set up [Monitoring](Monitoring) for production applications
+- Configure [Backup](Backup) strategies
+- Learn about [Performance](Performance) optimization
+- Review [Security](Security) best practices

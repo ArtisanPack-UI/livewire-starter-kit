@@ -428,6 +428,6 @@ php artisan module:publish ModuleName      # Publish specific module assets
 
 ## Next Steps
 
-- Explore [Components](components) for building module interfaces
-- Review [Testing](testing) for module testing strategies
-- Check [Deployment](deployment) for deploying modular applications
+- Explore [Components](Components) for building module interfaces
+- Review [Testing](Testing) for module testing strategies
+- Check [Deployment](Deployment) for deploying modular applications
