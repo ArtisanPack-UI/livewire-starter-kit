@@ -73,6 +73,11 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
+      - name: Setup Laravel environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
       - name: Run Unit tests
         env:
           XDEBUG_MODE: off
