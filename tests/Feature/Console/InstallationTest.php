@@ -2,6 +2,19 @@
 
 use Illuminate\Support\Facades\File;
 
+beforeEach(function (): void {
+    // Ensure config paths are set for theme generation
+    config()->set('artisanpack.livewire-ui-components.theme_output_path', resource_path('css/artisanpack-ui-theme.css'));
+    config()->set('artisanpack.livewire-ui-components.glass.enabled', true);
+    config()->set('artisanpack.livewire-ui-components.glass.output_path', resource_path('css/artisanpack-glass-tokens.css'));
+    config()->set('artisanpack.livewire-ui-components.design_tokens.enabled', true);
+    config()->set('artisanpack.livewire-ui-components.design_tokens.output_path', resource_path('css/artisanpack-design-tokens.css'));
+    config()->set('artisanpack.livewire-ui-components.glass.presets.enabled', true);
+    config()->set('artisanpack.livewire-ui-components.glass.presets.output_path', resource_path('css/artisanpack-glass-presets.css'));
+    config()->set('artisanpack.livewire-ui-components.high_contrast.enabled', true);
+    config()->set('artisanpack.livewire-ui-components.high_contrast.output_path', resource_path('css/artisanpack-high-contrast.css'));
+});
+
 /**
  * These tests verify that the starter kit installation process works correctly.
  * They simulate the post-create-project-cmd scripts defined in composer.json.
