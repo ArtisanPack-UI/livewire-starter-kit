@@ -10,7 +10,7 @@ Welcome to the Livewire Starter Kit! This guide will help you understand the key
 
 The starter kit is built with modern technologies:
 
-- **Laravel 12**: The latest version of the Laravel framework
+- **Laravel 12 or 13**: The Laravel framework (Laravel 13 requires PHP 8.3+)
 - **Livewire 3**: Full-stack framework for Laravel
 - **Volt**: Functional API for Livewire
 - **ArtisanPack UI**: Modern UI components

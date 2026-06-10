@@ -2,14 +2,14 @@
 
 A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapidly building modern, responsive web applications.
 
-[![Laravel](https://img.shields.io/badge/Laravel-v12.0-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-v12_or_v13-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
 [![Livewire](https://img.shields.io/badge/Livewire-v3.6-FB70A9?style=flat&logo=livewire&logoColor=white)](https://livewire.laravel.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.1-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Features
 
-- **Modern Stack**: Built with Laravel 12, Livewire 3, Volt, Flux, and Tailwind CSS 4
+- **Modern Stack**: Built with Laravel 12 or 13, Livewire 3, Volt, Flux, and Tailwind CSS 4
 - **ArtisanPack UI Components**: Pre-built UI components for rapid development
 - **Authentication System**: Complete authentication with login, registration, password reset, and email verification
 - **User Settings**: Profile, password, and appearance management
@@ -22,7 +22,7 @@ A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapid
 
 ## Requirements
 
-- PHP 8.2 or higher
+- PHP 8.2 or higher (Laravel 13 requires PHP 8.3+; Composer enforces this automatically)
 - Composer
 - Node.js and NPM
 

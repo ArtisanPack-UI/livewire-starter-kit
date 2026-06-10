@@ -12,7 +12,7 @@ This page answers common questions about the Livewire Starter Kit.
 
 The Livewire Starter Kit is a modern Laravel application boilerplate that combines:
 
-- **Laravel 12** - The latest version of the Laravel framework
+- **Laravel 12 or 13** - The Laravel framework (Laravel 13 requires PHP 8.3+)
 - **Livewire 3** - Full-stack framework for Laravel
 - **Volt** - Functional API for Livewire components
 - **ArtisanPack UI** - Modern UI component library
@@ -46,11 +46,11 @@ The starter kit includes:
 
 ### What PHP version is required?
 
-**PHP 8.2 or higher** is required. This ensures compatibility with Laravel 12 and all modern PHP features used in the starter kit.
+**PHP 8.2 or higher** is required for Laravel 12. **Laravel 13 requires PHP 8.3+** (enforced automatically by Composer based on the Laravel version selected).
 
 ### Can I use this with older versions of Laravel?
 
-No, this starter kit is specifically designed for **Laravel 12**. For older Laravel versions, you would need to adapt the code and dependencies accordingly.
+This starter kit supports **Laravel 12 and Laravel 13**. For older Laravel versions, you would need to adapt the code and dependencies accordingly.
 
 ### Does this work with Livewire 2?
 

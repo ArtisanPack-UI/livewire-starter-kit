@@ -1,5 +1,20 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [1.0.3] - 2026-06-09
+
+### Added
+- Laravel 13 support: widened `laravel/framework` constraint to `^12.0|^13.0`. Existing Laravel 12 users are unaffected; Laravel 13 is selectable on PHP 8.3+ via L13's own requirements (#9)
+
+### Changed
+- CI/CD workflows brought in line with the rest of the ArtisanPack UI ecosystem (cms-framework, seo):
+  - `release.yml` extracted from `ci.yml` as a separate workflow triggered on `v*` tag (test → create GitHub Release with CHANGELOG-extracted notes → notify Packagist)
+  - `ci.yml` gains a `lint` job (Pint) and a PHP version matrix (8.2, 8.3, 8.4)
+  - Top-level `permissions: contents: read` added to both workflows
+  - Removed vestigial `build` job in `ci.yml` (uploaded a `vendor/` artifact that was never consumed)
+
+### Removed
+- Untracked auto-generated `config/artisanpack.php` (added to `.gitignore`); the file is regenerated per-environment by `artisanpack:scaffold-config` and contains machine-specific absolute paths
+
 ## [1.0.2] - 2026-01-04
 
 ### Changed

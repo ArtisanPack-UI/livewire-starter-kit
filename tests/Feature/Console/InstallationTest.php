@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use Livewire\Livewire;
 
 beforeEach(function (): void {
     // Ensure config paths are set for theme generation
@@ -83,7 +84,7 @@ test('installation process: complete theme generation flow', function () {
 
 test('installation process: livewire is properly configured', function () {
     // Verify Livewire is configured
-    expect(class_exists(\Livewire\Livewire::class))->toBeTrue();
+    expect(class_exists(Livewire::class))->toBeTrue();
     expect(config('livewire'))->not->toBeNull();
 });
 
