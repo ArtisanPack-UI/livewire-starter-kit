@@ -1,5 +1,10 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [1.0.3] - Unreleased
+
+### Added
+- Laravel 13 support: widened `laravel/framework` constraint to `^12.0|^13.0`. Existing Laravel 12 users are unaffected; Laravel 13 is selectable on PHP 8.3+ via L13's own requirements (#9)
+
 ## [1.0.2] - 2026-01-04
 
 ### Changed

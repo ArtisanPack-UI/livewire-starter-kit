@@ -15,7 +15,7 @@
         "artisanpack-ui/core": "^1.0",
         "artisanpack-ui/livewire-ui-components": "^1.0.0",
         "artisanpack-ui/security": "^1.0",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^12.0|^13.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6",
         "livewire/volt": "^1.7"
