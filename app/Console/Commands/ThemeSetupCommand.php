@@ -25,7 +25,7 @@ class ThemeSetupCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $primaryColor = $this->ask('What is your primary color? (e.g., #FFFFFF)');
         $secondaryColor = $this->ask('What is your secondary color? (e.g., #000000)');
