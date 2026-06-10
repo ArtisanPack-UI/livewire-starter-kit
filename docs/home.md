@@ -10,7 +10,7 @@ Welcome to the comprehensive documentation for the Livewire Starter Kit - a mode
 
 The Livewire Starter Kit is built with a modern technology stack including:
 
-- **Laravel 12** - The latest version of the Laravel framework
+- **Laravel 12 or 13** - The Laravel framework (Laravel 13 requires PHP 8.3+)
 - **Livewire 3** - Full-stack reactive components
 - **Volt** - A functional API for Livewire
 - **Flux** - Advanced UI components
