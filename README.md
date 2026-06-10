@@ -22,7 +22,7 @@ A Laravel and Livewire starter kit featuring ArtisanPack UI components for rapid
 
 ## Requirements
 
-- PHP 8.2 or higher
+- PHP 8.2 or higher (Laravel 13 requires PHP 8.3+; Composer enforces this automatically)
 - Composer
 - Node.js and NPM
 
