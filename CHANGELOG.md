@@ -1,5 +1,25 @@
 # ArtisanPack UI Livewire Starter Kit
 
+## [2.0.0] - Unreleased
+
+### Added
+- Non-interactive fallback for `artisanpack:optional-packages-command`: when run under `laravel new` (which passes `--no-interaction`), the command now re-attaches to `/dev/tty` where available so the prompts actually appear, and falls back to a clear "run this manually after install" notice when no terminal is reachable.
+- Expanded the optional-packages prompt to include every current ArtisanPack UI package (ai, bing-places, bookings, cms-framework, google, google-business-profile, hooks, icons, media-library, security, visual-editor, plus the code-style dev tools), grouped by category in each label.
+- `phpunit/phpunit ^12.0` and `pestphp/pest-plugin-laravel ^4.0` explicitly required to match the L13 test toolchain.
+- `config/cache.php` now declares an empty `serializable_classes` allowlist to match L13's hardened deserialization default.
+- `config/session.php` now defaults `serialization` to `json` (via `SESSION_SERIALIZATION`). **Upgrading applications:** switching from `php` to `json` invalidates existing session data — plan a rollout accordingly.
+
+### Changed
+- **Breaking:** minimum PHP is now **8.3** (dropped 8.2).
+- **Breaking:** upgraded to **Laravel 13** (`laravel/framework ^13.0`). The `^12.0|^13.0` compatibility range shipped in 1.0.3 is dropped — v2.x targets L13 only.
+- Upgraded companion dependencies to their L13 majors: `laravel/tinker ^3.0`, `laravel/boost ^2.0`, `pestphp/pest ^4.0`, `pestphp/pest-plugin-laravel ^4.0`.
+- Bumped Vite to `^7.0` and `laravel-vite-plugin` to `^2.0`; refreshed remaining npm dep floors.
+- Bumped ArtisanPack UI dependencies to their L13-ready majors: `artisanpack-ui/accessibility ^2.3.0`, `artisanpack-ui/core ^1.3.0`, `artisanpack-ui/livewire-ui-components ^2.1.0` (drops the transitive `owenvoke/blade-fontawesome` dep that blocked L13), `artisanpack-ui/security ^2.1.0` (major bump).
+- CI matrix dropped PHP 8.2; test job now runs 8.3, 8.4, and 8.5.
+
+### Fixed
+- `config/database.php` now prefers `Pdo\Mysql::ATTR_SSL_CA` when available (PHP 8.5+) and falls back to `PDO::MYSQL_ATTR_SSL_CA` on 8.3/8.4, silencing the PHP 8.5 deprecation notice on the MySQL and MariaDB connections.
+
 ## [1.0.3] - 2026-06-09
 
 ### Added

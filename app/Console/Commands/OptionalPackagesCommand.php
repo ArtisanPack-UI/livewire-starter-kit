@@ -26,64 +26,172 @@ class OptionalPackagesCommand extends Command
     protected $description = 'Install optional ArtisanPack UI packages';
 
     /**
+     * Optional Composer packages, grouped by category.
+     *
+     * The key is the label shown in the prompt; the value is the Composer package name.
+     *
+     * @var array<string, array<string, string>>
+     */
+    protected array $optionalComposerPackages = [
+        'CMS & Content' => [
+            'artisanpack-ui/cms-framework' => 'CMS Framework — content management + editor',
+            'artisanpack-ui/media-library' => 'Media Library — uploads, folders, image processing',
+            'artisanpack-ui/visual-editor' => 'Visual Editor — Gutenberg-based block editor',
+        ],
+        'Auth & Security' => [
+            'artisanpack-ui/security' => 'Security — sanitization, escaping, 2FA',
+        ],
+        'Integrations' => [
+            'artisanpack-ui/ai' => 'AI — multi-provider AI client with budget guard',
+            'artisanpack-ui/google' => 'Google — OAuth + APIs',
+            'artisanpack-ui/google-business-profile' => 'Google Business Profile — GBP API client',
+            'artisanpack-ui/bing-places' => 'Bing Places — Places API client',
+            'artisanpack-ui/bookings' => 'Bookings — booking flow + calendar sync',
+        ],
+        'Utilities' => [
+            'artisanpack-ui/icons' => 'Icons — extensible icon registration',
+            'artisanpack-ui/hooks' => 'Hooks — WordPress-style actions and filters',
+            'artisanpack-ui/code-style' => 'Code Style — PHPCS standard (dev)',
+            'artisanpack-ui/code-style-pint' => 'Code Style Pint — Pint config (dev)',
+        ],
+    ];
+
+    /**
+     * Optional npm packages.
+     *
+     * @var array<string, string>
+     */
+    protected array $optionalNpmPackages = [
+        '@artisanpack-ui/livewire-drag-and-drop' => 'Drag and drop support for Livewire components',
+    ];
+
+    /**
      * Execute the console command.
      */
     public function handle(): int
     {
         $this->updateProjectName();
 
+        // The Laravel installer invokes `composer create-project --no-interaction`, so
+        // by default this command inherits non-interactive mode and Laravel Prompts
+        // silently falls back to defaults. Re-attach to /dev/tty when possible so the
+        // prompts actually run under `laravel new`.
+        if (! $this->input->isInteractive()) {
+            if (! app()->runningUnitTests() && $this->canReattachTty()) {
+                return $this->rerunWithTty();
+            }
+
+            $this->warn(__('Skipping interactive optional packages setup (non-interactive mode).'));
+            $this->line(__('Run `php artisan artisanpack:optional-packages-command` after install to choose optional packages and modular structure.'));
+
+            $this->info(__('Scaffolding ArtisanPack configuration...'));
+            $this->call('artisanpack:scaffold-config');
+
+            $this->info(__('Installation complete.'));
+
+            return 0;
+        }
+
+        $composerChoices = $this->buildComposerChoices();
+
         $packages = multiselect(
-            __('Which optional packages would you like to install?'),
-            [
-                'artisanpack-ui/cms-framework',
-                'artisanpack-ui/code-style',
-                'artisanpack-ui/code-style-pint',
-                'artisanpack-ui/icons',
-                'artisanpack-ui/hooks',
-                'artisanpack-ui/media-library',
-            ]
+            label: __('Which optional packages would you like to install?'),
+            options: $composerChoices,
+            hint: __('Space to select, enter to confirm. Category is shown in each label.'),
+            scroll: 15,
         );
 
         if (! empty($packages)) {
-            $this->info('Installing selected optional packages...');
-            $packagesForCommand = $packages;
-
-            $command = 'composer require '.implode(' ', $packagesForCommand).' --with-all-dependencies';
+            $this->info(__('Installing selected optional packages...'));
+            $command = 'composer require '.implode(' ', $packages).' --with-all-dependencies';
             shell_exec($command);
-            $this->info('Optional packages installed successfully.');
+            $this->info(__('Optional packages installed successfully.'));
         }
 
         $npmPackages = multiselect(
-            __('Which optional npm packages would you like to install?'),
-            [
-                '@artisanpack-ui/livewire-drag-and-drop',
-            ]
+            label: __('Which optional npm packages would you like to install?'),
+            options: $this->optionalNpmPackages,
         );
 
         if (! empty($npmPackages)) {
-            $this->info('Installing selected optional npm packages...');
-            $npmPackagesForCommand = $npmPackages;
-            $command = 'npm install '.implode(' ', $npmPackagesForCommand);
+            $this->info(__('Installing selected optional npm packages...'));
+            $command = 'npm install '.implode(' ', $npmPackages);
             shell_exec($command);
-            $this->info('Optional npm packages installed successfully.');
+            $this->info(__('Optional npm packages installed successfully.'));
         }
 
         $useModularStructure = confirm(
-            __('Would you like to use a modular Laravel structure?'),
-            default: false
+            label: __('Would you like to use a modular Laravel structure?'),
+            default: false,
         );
 
         if ($useModularStructure) {
-            $this->info('Setting up modular Laravel structure...');
+            $this->info(__('Setting up modular Laravel structure...'));
             $this->setupModularStructure();
         }
 
-        $this->info('Scaffolding ArtisanPack configuration...');
+        $this->info(__('Scaffolding ArtisanPack configuration...'));
         $this->call('artisanpack:scaffold-config');
 
-        $this->info('Installation complete.');
+        $this->info(__('Installation complete.'));
 
         return 0;
+    }
+
+    /**
+     * Can this environment re-attach STDIN/STDOUT/STDERR to the user's terminal?
+     * False on Windows, in CI, in Docker without `-t`, or any other environment
+     * where `/dev/tty` isn't reachable.
+     */
+    protected function canReattachTty(): bool
+    {
+        if (PHP_OS_FAMILY === 'Windows') {
+            return false;
+        }
+
+        return file_exists('/dev/tty') && is_readable('/dev/tty') && is_writable('/dev/tty');
+    }
+
+    /**
+     * Re-invoke this command in a child process with STDIN/STDOUT/STDERR bound
+     * to the user's terminal so `Laravel\Prompts` actually shows prompts. The
+     * child process inherits no `--no-interaction` flag, so it runs the normal
+     * interactive path. Returns the child's exit code.
+     */
+    protected function rerunWithTty(): int
+    {
+        $php = escapeshellarg(PHP_BINARY);
+        $artisan = escapeshellarg(base_path('artisan'));
+
+        $command = sprintf(
+            '%s %s artisanpack:optional-packages-command </dev/tty >/dev/tty 2>/dev/tty',
+            $php,
+            $artisan,
+        );
+
+        passthru($command, $exitCode);
+
+        return (int) $exitCode;
+    }
+
+    /**
+     * Flatten the grouped composer package list into a flat {package => label} map
+     * with the category prepended to the label so users can see which group each
+     * option belongs to inside `multiselect()`.
+     *
+     * @return array<string, string>
+     */
+    protected function buildComposerChoices(): array
+    {
+        $choices = [];
+
+        foreach ($this->optionalComposerPackages as $category => $packages) {
+            foreach ($packages as $package => $label) {
+                $choices[$package] = sprintf('[%s] %s', $category, $label);
+            }
+        }
+
+        return $choices;
     }
 
     /**
