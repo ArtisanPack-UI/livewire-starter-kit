@@ -26,6 +26,17 @@ class OptionalPackagesCommand extends Command
     protected $description = 'Install optional ArtisanPack UI packages';
 
     /**
+     * Packages that should be installed as `require-dev` dependencies. Anything
+     * not in this list goes into `require`.
+     *
+     * @var array<int, string>
+     */
+    protected array $devOnlyPackages = [
+        'artisanpack-ui/code-style',
+        'artisanpack-ui/code-style-pint',
+    ];
+
+    /**
      * Optional Composer packages, grouped by category.
      *
      * The key is the label shown in the prompt; the value is the Composer package name.
@@ -78,7 +89,14 @@ class OptionalPackagesCommand extends Command
         // prompts actually run under `laravel new`.
         if (! $this->input->isInteractive()) {
             if (! app()->runningUnitTests() && $this->canReattachTty()) {
-                return $this->rerunWithTty();
+                $exitCode = $this->rerunWithTty();
+
+                if ($exitCode === 0) {
+                    return 0;
+                }
+
+                // Child couldn't reach the terminal (ENXIO on Linux without a
+                // controlling terminal, or similar) — fall through to the notice.
             }
 
             $this->warn(__('Skipping interactive optional packages setup (non-interactive mode).'));
@@ -103,8 +121,20 @@ class OptionalPackagesCommand extends Command
 
         if (! empty($packages)) {
             $this->info(__('Installing selected optional packages...'));
-            $command = 'composer require '.implode(' ', $packages).' --with-all-dependencies';
-            shell_exec($command);
+
+            [$devPackages, $runtimePackages] = collect($packages)
+                ->partition(fn (string $package) => in_array($package, $this->devOnlyPackages, true))
+                ->map(fn ($chunk) => $chunk->values()->all())
+                ->all();
+
+            if (! empty($runtimePackages)) {
+                shell_exec('composer require '.implode(' ', $runtimePackages).' --with-all-dependencies');
+            }
+
+            if (! empty($devPackages)) {
+                shell_exec('composer require --dev '.implode(' ', $devPackages).' --with-all-dependencies');
+            }
+
             $this->info(__('Optional packages installed successfully.'));
         }
 
@@ -142,6 +172,11 @@ class OptionalPackagesCommand extends Command
      * Can this environment re-attach STDIN/STDOUT/STDERR to the user's terminal?
      * False on Windows, in CI, in Docker without `-t`, or any other environment
      * where `/dev/tty` isn't reachable.
+     *
+     * `is_readable()`/`is_writable()` are insufficient: on Linux, `/dev/tty`
+     * exists with rw permissions even for processes with no controlling
+     * terminal — but `open()` on it then fails with ENXIO. We actually open
+     * both descriptors here to confirm a real terminal is reachable.
      */
     protected function canReattachTty(): bool
     {
@@ -149,7 +184,24 @@ class OptionalPackagesCommand extends Command
             return false;
         }
 
-        return file_exists('/dev/tty') && is_readable('/dev/tty') && is_writable('/dev/tty');
+        if (! file_exists('/dev/tty')) {
+            return false;
+        }
+
+        $read = @fopen('/dev/tty', 'rb');
+        $write = @fopen('/dev/tty', 'wb');
+
+        $ok = $read !== false && $write !== false;
+
+        if ($read !== false) {
+            fclose($read);
+        }
+
+        if ($write !== false) {
+            fclose($write);
+        }
+
+        return $ok;
     }
 
     /**

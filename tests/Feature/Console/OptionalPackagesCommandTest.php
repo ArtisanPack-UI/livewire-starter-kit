@@ -1,5 +1,7 @@
 <?php
 
+use App\Console\Commands\OptionalPackagesCommand;
+
 test('interactive command runs successfully without modular structure', function () {
     $this->artisan('artisanpack:optional-packages-command')
         ->expectsQuestion(__('Which optional packages would you like to install?'), [])
@@ -56,10 +58,10 @@ test('composer.json name is updated based on project directory', function () {
 });
 
 test('optional composer packages include all current ArtisanPack UI packages', function () {
-    $command = new \App\Console\Commands\OptionalPackagesCommand;
+    $command = new OptionalPackagesCommand;
 
     $flatten = fn () => collect(
-        (new \ReflectionProperty($command, 'optionalComposerPackages'))
+        (new ReflectionProperty($command, 'optionalComposerPackages'))
             ->getValue($command)
     )->flatMap(fn ($group) => array_keys($group))->all();
 

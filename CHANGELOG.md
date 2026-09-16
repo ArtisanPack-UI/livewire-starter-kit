@@ -19,6 +19,8 @@
 
 ### Fixed
 - `config/database.php` now prefers `Pdo\Mysql::ATTR_SSL_CA` when available (PHP 8.5+) and falls back to `PDO::MYSQL_ATTR_SSL_CA` on 8.3/8.4, silencing the PHP 8.5 deprecation notice on the MySQL and MariaDB connections.
+- `artisanpack:optional-packages-command` now installs `artisanpack-ui/code-style` and `artisanpack-ui/code-style-pint` as `require-dev` dependencies via a partitioned `composer require --dev` call, so they don't leak into production installs.
+- TTY reachability probe now `fopen`s `/dev/tty` for read + write instead of relying on `is_readable()`/`is_writable()`, which pass on Linux even when the process has no controlling terminal (`open()` then fails with ENXIO). A failed `rerunWithTty()` now routes back through the "skipping" notice fallback instead of returning the shell's non-zero status.
 
 ## [1.0.3] - 2026-06-09
 
